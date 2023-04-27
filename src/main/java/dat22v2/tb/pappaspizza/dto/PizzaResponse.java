@@ -10,6 +10,7 @@ import lombok.*;
 
 public class PizzaResponse {
 
+    String pizzaName;
 
 
 

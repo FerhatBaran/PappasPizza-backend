@@ -10,4 +10,9 @@ import lombok.*;
 @Builder
 
 public class PizzaRequest {
+
+    String pizzaName;
+
+
+
 }
