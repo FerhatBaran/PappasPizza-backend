@@ -24,6 +24,7 @@ public class PizzaService {
         List<Pizza> pizzas = pizzaRepository.findAll();
         List<PizzaResponse> pizzaResponses = new ArrayList<>();
         pizzaResponses = pizzas.stream().map(pizza -> new PizzaResponse(pizza)).toList();
+        System.out.println(pizzaResponses);
         return pizzaResponses;
     }
 
