@@ -13,9 +13,10 @@ import lombok.*;
 public class Ingredient {
 
   @Id
-  private Long id;
+  private Integer id;
   private String name;
   private double price;
+
 
   // Constructors, getters, and setters
 }

@@ -1,5 +1,6 @@
 package dat22v2.tb.pappaspizza.dto;
 
+import dat22v2.tb.pappaspizza.entity.Ingredient;
 import dat22v2.tb.pappaspizza.entity.Pizza;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.FetchType;
@@ -18,7 +19,7 @@ public class PizzaResponse {
     private int id;
     private String name;
     private double price;
-    private List<String> ingredients;
+    private List<Ingredient> ingredients;
 
 
     public PizzaResponse(Pizza pizza) {

@@ -1,12 +1,10 @@
 package dat22v2.tb.pappaspizza.entity;
 
 import dat22v2.tb.pappaspizza.dto.PizzaResponse;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,7 +21,7 @@ public class Pizza{
     private int id;
     private String name;
     private double price;
-    @ElementCollection(fetch = FetchType.LAZY)
-    private List<String> ingredients;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    private List<Ingredient> ingredients;
     // Constructors, getters, and setters
 }
