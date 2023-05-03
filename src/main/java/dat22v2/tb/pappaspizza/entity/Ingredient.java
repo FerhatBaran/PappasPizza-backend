@@ -1,4 +1,5 @@
 package dat22v2.tb.pappaspizza.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,8 +14,8 @@ import java.util.List;
 @Builder
 
 @Entity
-@Table(name = "pizza")
-public class Pizza {
+@Table(name = "ingredient")
+public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,19 +23,5 @@ public class Pizza {
     private String name;
 
     private int price;
-
-    //@JsonIgnore
-
-    @ManyToMany(cascade = CascadeType.MERGE)
-    private List<Ingredient> ingredients = new ArrayList<>();
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
 
 }

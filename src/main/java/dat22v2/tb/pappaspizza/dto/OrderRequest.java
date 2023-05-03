@@ -1,6 +1,5 @@
 package dat22v2.tb.pappaspizza.dto;
 
-
 import lombok.*;
 
 @Getter
@@ -9,10 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 
-public class PizzaRequest {
-
-    private String name;
-
-
+public class OrderRequest {
+    private int id;
 
 }
