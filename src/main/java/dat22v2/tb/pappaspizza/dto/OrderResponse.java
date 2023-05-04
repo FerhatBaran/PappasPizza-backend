@@ -19,9 +19,12 @@ public class OrderResponse {
 
     private List<Pizza> pizzas;
 
+    private boolean confirmed;
+
     public OrderResponse(CustomerOrder customerOrder){
         this.id = customerOrder.getOrderId();
         this.phoneNumber = customerOrder.getPhoneNumber();
         this.pizzas = customerOrder.getPizzas();
+        this.confirmed = customerOrder.isConfirmed();
     }
 }

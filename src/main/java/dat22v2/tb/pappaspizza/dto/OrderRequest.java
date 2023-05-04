@@ -19,12 +19,15 @@ public class OrderRequest {
 
     private List<Pizza> pizzas;
 
-    public OrderRequest(String phoneNumber, List<Pizza> pizzas){
+    private boolean confirmed;
+
+    public OrderRequest(String phoneNumber, List<Pizza> pizzas, boolean confirmed){
         this.phoneNumber = phoneNumber;
         this.pizzas = pizzas;
+        this.confirmed = confirmed;
     }
 
     public CustomerOrder getOrderEntity(OrderRequest orderRequest){
-        return new CustomerOrder(orderRequest.getPhoneNumber(), orderRequest.getPizzas());
+        return new CustomerOrder(orderRequest.getPhoneNumber(), orderRequest.getPizzas(), orderRequest.isConfirmed());
     }
 }

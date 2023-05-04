@@ -24,10 +24,13 @@ public class CustomerOrder {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "pizzaId")
-    private List<Pizza> Pizzas;
+    private List<Pizza> pizzas;
 
-    public CustomerOrder(String phoneNumber, List<Pizza> pizzas) {
+    private boolean confirmed;
+
+    public CustomerOrder(String phoneNumber, List<Pizza> pizzas, boolean confirmed) {
         this.phoneNumber = phoneNumber;
-        this.Pizzas = pizzas;
+        this.pizzas = pizzas;
+        this.confirmed = confirmed;
     }
 }

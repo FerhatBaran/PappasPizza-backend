@@ -21,8 +21,10 @@ public class DeveloperData implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception{
 
-        CustomerOrder customerOrder1 = CustomerOrder.builder().phoneNumber("12345678").build();
-        CustomerOrder customerOrder2 = CustomerOrder.builder().phoneNumber("87654321").build();
+        CustomerOrder customerOrder1 = CustomerOrder.builder().phoneNumber("12345678")
+                .confirmed(false).build();
+        CustomerOrder customerOrder2 = CustomerOrder.builder().phoneNumber("87654321")
+                .confirmed(true).build();
 
         orderRepository.save(customerOrder1);
         orderRepository.save(customerOrder2);
