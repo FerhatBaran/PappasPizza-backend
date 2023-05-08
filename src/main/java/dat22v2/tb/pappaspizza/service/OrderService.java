@@ -45,7 +45,7 @@ public class OrderService {
 
     public void confirmOrder(Integer id) {
        Order order = orderRepository.findById(id).orElseThrow(()
-               -> new EntityNotFoundException("No such Order"));
+               -> new EntityNotFoundException("Kunne ikke finde Order"));
        boolean value = !order.isConfirmed();
        order.setConfirmed(value);
        orderRepository.save(order);
@@ -53,7 +53,7 @@ public class OrderService {
 
     public void changeStatus(Integer id, String newStatus) {
         Order order = orderRepository.findById(id).orElseThrow(()
-                -> new EntityNotFoundException("No such Order"));
+                -> new EntityNotFoundException("Kunne ikke finde Order"));
         order.setStatus(OrderStatus.valueOf(newStatus));
         orderRepository.save(order);
     }
