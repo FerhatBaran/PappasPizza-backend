@@ -1,18 +1,21 @@
 package dat22v2.tb.pappaspizza.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import dat22v2.tb.pappaspizza.dto.OrderResponse;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
-@NoArgsConstructor
 @Setter
+@NoArgsConstructor
+@Table(name = "pizza_order")
 public class Order {
     @Id
     private int id;
@@ -25,13 +28,36 @@ public class Order {
         return id;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     List<Pizza> pizzas;
 
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     List<Drink> drinks;
 
+    @CreationTimestamp
+    LocalDateTime created;
+
+    Boolean confirmed;
+
+
+    LocalDateTime deliveryTime;
+
+
+    public void addPizza(Pizza pizza) {
+        if (pizzas == null) {
+            pizzas = new ArrayList<>();
+        }
+        pizzas.add(pizza);
+    }
+
+
+    public void addDrink(Drink drink) {
+        if (drinks == null) {
+            drinks = new ArrayList<>();
+        }
+        drinks.add(drink);
+    }
 
 
 

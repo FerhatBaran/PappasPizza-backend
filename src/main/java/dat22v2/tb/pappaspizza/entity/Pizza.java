@@ -1,11 +1,13 @@
 package dat22v2.tb.pappaspizza.entity;
 
 import dat22v2.tb.pappaspizza.dto.PizzaResponse;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,11 +32,19 @@ public class Pizza {
 
 
     String name;
-    String price;
+    Double price;
 
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     List<Ingredient> ingredients;
+
+    public void addIngredient(Ingredient ingredient) {
+        if (ingredients == null) {
+            ingredients = new ArrayList<>();
+        }
+        ingredients.add(ingredient);
+
+    }
 
 
 

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 
 @Getter
 @Setter
@@ -13,7 +15,11 @@ public class ReceiptResponse {
 
     OrderResponse order;
 
+    LocalDateTime completedDate;
 
 
-
+    public ReceiptResponse(Receipt receipt) {
+        this.order = new OrderResponse(receipt.getOrder());
+        this.completedDate = receipt.getCompleted();
+    }
 }
