@@ -24,7 +24,7 @@ public class Order {
     private String phoneNumber;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "pizzaId")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "id")
     private List<Pizza> pizzas;
 
     private String name;
