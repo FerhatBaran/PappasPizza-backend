@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "pizza_order")
+@Table(name = "customer_order")
 public class Order {
     @Id
     private int id;

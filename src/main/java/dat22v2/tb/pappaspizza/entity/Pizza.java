@@ -38,6 +38,7 @@ public class Pizza {
     @ManyToMany(cascade = CascadeType.ALL)
     List<Ingredient> ingredients;
 
+
     public void addIngredient(Ingredient ingredient) {
         if (ingredients == null) {
             ingredients = new ArrayList<>();

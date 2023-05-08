@@ -13,12 +13,15 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ReceiptResponse {
 
+
+    Integer id;
     OrderResponse order;
 
     LocalDateTime completedDate;
 
 
     public ReceiptResponse(Receipt receipt) {
+        this.id = receipt.getId();
         this.order = new OrderResponse(receipt.getOrder());
         this.completedDate = receipt.getCompleted();
     }
