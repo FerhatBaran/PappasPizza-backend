@@ -1,9 +1,11 @@
 package dat22v2.tb.pappaspizza.entity;
 
 import dat22v2.tb.pappaspizza.dto.PizzaResponse;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -13,17 +15,13 @@ import lombok.*;
 @Builder
 
 @Entity
-public class Pizza {
+public class Pizza{
+
     @Id
-    private Integer id;
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-
+    private int id;
+    private String name;
+    private double price;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    private List<Ingredient> ingredients;
+    // Constructors, getters, and setters
 }
