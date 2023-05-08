@@ -15,11 +15,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "customer_order")
-public class CustomerOrder {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer orderId;
+    private Integer id;
 
     private String phoneNumber;
 
@@ -41,9 +41,9 @@ public class CustomerOrder {
     @Column(columnDefinition = "ENUM('FRESH','IN_PROGRESS','READY','DELIVERED')")
     private OrderStatus status;
 
-    public CustomerOrder(String phoneNumber, List<Pizza> pizzas, String name, String address,
-                         int postalCode, LocalDateTime pickUpTime, boolean confirmed,
-                         OrderStatus status) {
+    public Order(String phoneNumber, List<Pizza> pizzas, String name, String address,
+                 int postalCode, LocalDateTime pickUpTime, boolean confirmed,
+                 OrderStatus status) {
         this.phoneNumber = phoneNumber;
         this.pizzas = pizzas;
         this.name = name;

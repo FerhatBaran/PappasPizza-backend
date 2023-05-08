@@ -1,6 +1,6 @@
 package dat22v2.tb.pappaspizza.dto;
 
-import dat22v2.tb.pappaspizza.entity.CustomerOrder;
+import dat22v2.tb.pappaspizza.entity.Order;
 import dat22v2.tb.pappaspizza.entity.OrderStatus;
 import dat22v2.tb.pappaspizza.entity.Pizza;
 import lombok.*;
@@ -29,15 +29,15 @@ public class OrderResponse {
     private boolean confirmed;
     private OrderStatus status;
 
-    public OrderResponse(CustomerOrder customerOrder){
-        this.id = customerOrder.getOrderId();
-        this.phoneNumber = customerOrder.getPhoneNumber();
-        this.name = customerOrder.getName();
-        this.address = customerOrder.getAddress();
-        this.postalCode = customerOrder.getPostalCode();
-        this.pickUpTime = customerOrder.getPickUpTime();
-        this.pizzas = customerOrder.getPizzas();
-        this.confirmed = customerOrder.isConfirmed();
-        this.status = customerOrder.getStatus();
+    public OrderResponse(Order order){
+        this.id = order.getId();
+        this.phoneNumber = order.getPhoneNumber();
+        this.name = order.getName();
+        this.address = order.getAddress();
+        this.postalCode = order.getPostalCode();
+        this.pickUpTime = order.getPickUpTime();
+        this.pizzas = order.getPizzas();
+        this.confirmed = order.isConfirmed();
+        this.status = order.getStatus();
     }
 }

@@ -15,10 +15,10 @@ import lombok.*;
 @Entity
 public class Pizza {
     @Id
-    private Integer pizzaId;
+    private Integer id;
 
     @ManyToOne
-    private CustomerOrder customerOrder;
+    private Order order;
 
 
 }

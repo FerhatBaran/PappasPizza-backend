@@ -1,6 +1,6 @@
 package dat22v2.tb.pappaspizza.config;
 
-import dat22v2.tb.pappaspizza.entity.CustomerOrder;
+import dat22v2.tb.pappaspizza.entity.Order;
 import dat22v2.tb.pappaspizza.entity.OrderStatus;
 import dat22v2.tb.pappaspizza.repository.OrderRepository;
 import dat22v2.tb.pappaspizza.repository.PizzaRepository;
@@ -24,7 +24,7 @@ public class DeveloperData implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception{
 
-        CustomerOrder customerOrder1 = CustomerOrder.builder().phoneNumber("12345678")
+        Order order1 = Order.builder().phoneNumber("12345678")
                 .name("bob")
                 .address("test")
                 .postalCode(2000)
@@ -32,7 +32,7 @@ public class DeveloperData implements ApplicationRunner {
                 .confirmed(false)
                 .status(OrderStatus.FRESH)
                 .build();
-        CustomerOrder customerOrder2 = CustomerOrder.builder().phoneNumber("87654321")
+        Order order2 = Order.builder().phoneNumber("87654321")
                 .name("lise")
                 .address("test2")
                 .postalCode(2000)
@@ -41,8 +41,8 @@ public class DeveloperData implements ApplicationRunner {
                 .status(OrderStatus.IN_PROGRESS)
                 .build();
 
-        orderRepository.save(customerOrder1);
-        orderRepository.save(customerOrder2);
+        orderRepository.save(order1);
+        orderRepository.save(order2);
 
     }
 

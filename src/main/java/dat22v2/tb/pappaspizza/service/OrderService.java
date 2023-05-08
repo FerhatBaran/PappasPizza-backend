@@ -1,7 +1,7 @@
 package dat22v2.tb.pappaspizza.service;
 
 import dat22v2.tb.pappaspizza.dto.OrderResponse;
-import dat22v2.tb.pappaspizza.entity.CustomerOrder;
+import dat22v2.tb.pappaspizza.entity.Order;
 import dat22v2.tb.pappaspizza.entity.OrderStatus;
 import dat22v2.tb.pappaspizza.repository.OrderRepository;
 import dat22v2.tb.pappaspizza.repository.PizzaRepository;
@@ -23,17 +23,17 @@ public class OrderService {
     }
 
     public List<OrderResponse> getOrders(){
-        List<CustomerOrder> customerOrders = orderRepository.findAll();
+        List<Order> orders = orderRepository.findAll();
         List<OrderResponse> orderResponses = new ArrayList<>();
-        orderResponses = customerOrders.stream().map(order -> new OrderResponse(order)).toList();
+        orderResponses = orders.stream().map(order -> new OrderResponse(order)).toList();
         return orderResponses;
     }
 
     public List<OrderResponse> getConfirmedOrders() {
-        List<CustomerOrder> customerOrders = orderRepository.findAll();
-        List<CustomerOrder> confirmedOrders = new ArrayList<>();
+        List<Order> orders = orderRepository.findAll();
+        List<Order> confirmedOrders = new ArrayList<>();
         List<OrderResponse> orderResponses = new ArrayList<>();
-        for (CustomerOrder order : customerOrders ) {
+        for (Order order : orders) {
             if (order.isConfirmed()){
                 confirmedOrders.add(order);
             }
@@ -44,7 +44,7 @@ public class OrderService {
     }
 
     public void confirmOrder(Integer id) {
-       CustomerOrder order = orderRepository.findById(id).orElseThrow(()
+       Order order = orderRepository.findById(id).orElseThrow(()
                -> new EntityNotFoundException("No such Order"));
        boolean value = !order.isConfirmed();
        order.setConfirmed(value);
@@ -52,7 +52,7 @@ public class OrderService {
     }
 
     public void changeStatus(Integer id, String newStatus) {
-        CustomerOrder order = orderRepository.findById(id).orElseThrow(()
+        Order order = orderRepository.findById(id).orElseThrow(()
                 -> new EntityNotFoundException("No such Order"));
         order.setStatus(OrderStatus.valueOf(newStatus));
         orderRepository.save(order);

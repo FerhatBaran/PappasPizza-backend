@@ -1,6 +1,6 @@
 package dat22v2.tb.pappaspizza.dto;
 
-import dat22v2.tb.pappaspizza.entity.CustomerOrder;
+import dat22v2.tb.pappaspizza.entity.Order;
 import dat22v2.tb.pappaspizza.entity.OrderStatus;
 import dat22v2.tb.pappaspizza.entity.Pizza;
 import lombok.*;
@@ -42,8 +42,8 @@ public class OrderRequest {
         this.status = status;
     }
 
-    public CustomerOrder getOrderEntity(OrderRequest orderRequest){
-        return new CustomerOrder(orderRequest.getPhoneNumber(), orderRequest.getPizzas(),
+    public Order getOrderEntity(OrderRequest orderRequest){
+        return new Order(orderRequest.getPhoneNumber(), orderRequest.getPizzas(),
                 orderRequest.getName(), orderRequest.getAddress(),
                 orderRequest.getPostalCode(), orderRequest.getPickUpTime(),
                 orderRequest.isConfirmed(), orderRequest.getStatus());
