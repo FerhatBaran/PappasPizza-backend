@@ -2,6 +2,7 @@ package dat22v2.tb.pappaspizza.service;
 
 import dat22v2.tb.pappaspizza.dto.OrderResponse;
 import dat22v2.tb.pappaspizza.entity.CustomerOrder;
+import dat22v2.tb.pappaspizza.entity.OrderStatus;
 import dat22v2.tb.pappaspizza.repository.OrderRepository;
 import dat22v2.tb.pappaspizza.repository.PizzaRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -48,5 +49,12 @@ public class OrderService {
        boolean value = !order.isConfirmed();
        order.setConfirmed(value);
        orderRepository.save(order);
+    }
+
+    public void changeStatus(Integer id, String newStatus) {
+        CustomerOrder order = orderRepository.findById(id).orElseThrow(()
+                -> new EntityNotFoundException("No such Order"));
+        order.setStatus(OrderStatus.valueOf(newStatus));
+        orderRepository.save(order);
     }
 }

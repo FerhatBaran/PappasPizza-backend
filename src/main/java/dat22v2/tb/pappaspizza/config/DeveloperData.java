@@ -1,11 +1,14 @@
 package dat22v2.tb.pappaspizza.config;
 
 import dat22v2.tb.pappaspizza.entity.CustomerOrder;
+import dat22v2.tb.pappaspizza.entity.OrderStatus;
 import dat22v2.tb.pappaspizza.repository.OrderRepository;
 import dat22v2.tb.pappaspizza.repository.PizzaRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
+
+import java.time.LocalDateTime;
 
 @Controller
 public class DeveloperData implements ApplicationRunner {
@@ -22,9 +25,21 @@ public class DeveloperData implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception{
 
         CustomerOrder customerOrder1 = CustomerOrder.builder().phoneNumber("12345678")
-                .confirmed(false).build();
+                .name("bob")
+                .address("test")
+                .postalCode(2000)
+                .pickUpTime(LocalDateTime.of(2020,10,23,5,5,5))
+                .confirmed(false)
+                .status(OrderStatus.FRESH)
+                .build();
         CustomerOrder customerOrder2 = CustomerOrder.builder().phoneNumber("87654321")
-                .confirmed(true).build();
+                .name("lise")
+                .address("test2")
+                .postalCode(2000)
+                .pickUpTime(LocalDateTime.of(2020,10,23,5,5,5))
+                .confirmed(true)
+                .status(OrderStatus.IN_PROGRESS)
+                .build();
 
         orderRepository.save(customerOrder1);
         orderRepository.save(customerOrder2);

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -26,11 +27,30 @@ public class CustomerOrder {
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "pizzaId")
     private List<Pizza> pizzas;
 
+    private String name;
+
+    private String address;
+
+    private int postalCode;
+
+    private LocalDateTime pickUpTime;
+
     private boolean confirmed;
 
-    public CustomerOrder(String phoneNumber, List<Pizza> pizzas, boolean confirmed) {
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "ENUM('FRESH','IN_PROGRESS','READY','DELIVERED')")
+    private OrderStatus status;
+
+    public CustomerOrder(String phoneNumber, List<Pizza> pizzas, String name, String address,
+                         int postalCode, LocalDateTime pickUpTime, boolean confirmed,
+                         OrderStatus status) {
         this.phoneNumber = phoneNumber;
         this.pizzas = pizzas;
+        this.name = name;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.pickUpTime = pickUpTime;
         this.confirmed = confirmed;
+        this.status = status;
     }
 }

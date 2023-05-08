@@ -34,4 +34,9 @@ public class OrderController {
         orderService.confirmOrder(id);
 
     }
+
+    @PatchMapping("status/{id}")
+    public void changeStatus(@PathVariable Integer id, @RequestParam String newStatus){
+        orderService.changeStatus(id, newStatus);
+    }
 }

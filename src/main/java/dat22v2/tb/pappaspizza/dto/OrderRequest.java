@@ -1,9 +1,11 @@
 package dat22v2.tb.pappaspizza.dto;
 
 import dat22v2.tb.pappaspizza.entity.CustomerOrder;
+import dat22v2.tb.pappaspizza.entity.OrderStatus;
 import dat22v2.tb.pappaspizza.entity.Pizza;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -19,15 +21,31 @@ public class OrderRequest {
 
     private List<Pizza> pizzas;
 
-    private boolean confirmed;
+    private String name;
+    private String address;
+    private int postalCode;
+    private LocalDateTime pickUpTime;
 
-    public OrderRequest(String phoneNumber, List<Pizza> pizzas, boolean confirmed){
+    private boolean confirmed;
+    private OrderStatus status;
+
+    public OrderRequest(String phoneNumber, List<Pizza> pizzas, String name,
+                        String address, int postalCode, LocalDateTime pickUpTime,
+                        OrderStatus status, boolean confirmed){
         this.phoneNumber = phoneNumber;
         this.pizzas = pizzas;
+        this.name = name;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.pickUpTime = pickUpTime;
         this.confirmed = confirmed;
+        this.status = status;
     }
 
     public CustomerOrder getOrderEntity(OrderRequest orderRequest){
-        return new CustomerOrder(orderRequest.getPhoneNumber(), orderRequest.getPizzas(), orderRequest.isConfirmed());
+        return new CustomerOrder(orderRequest.getPhoneNumber(), orderRequest.getPizzas(),
+                orderRequest.getName(), orderRequest.getAddress(),
+                orderRequest.getPostalCode(), orderRequest.getPickUpTime(),
+                orderRequest.isConfirmed(), orderRequest.getStatus());
     }
 }
