@@ -1,6 +1,7 @@
 package dat22v2.tb.pappaspizza.entity;
 
-import dat22v2.tb.pappaspizza.dto.PizzaResponse;
+
+import dat22v2.tb.pappaspizza.dto.OrderResponse;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -8,33 +9,30 @@ import lombok.*;
 
 import java.util.List;
 
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-
 @Entity
-public class Pizza {
+@Getter
+@NoArgsConstructor
+@Setter
+public class Order {
     @Id
-    private Integer id;
+    private int id;
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-
-    String name;
-    String price;
+    @ManyToMany
+    List<Pizza> pizzas;
 
 
     @ManyToMany
-    List<Ingredient> ingredients;
+    List<Drink> drinks;
+
+
 
 
 
