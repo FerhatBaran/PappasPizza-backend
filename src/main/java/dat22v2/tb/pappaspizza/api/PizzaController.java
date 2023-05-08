@@ -7,10 +7,8 @@ import dat22v2.tb.pappaspizza.service.IngredientService;
 import dat22v2.tb.pappaspizza.service.OrderService;
 import dat22v2.tb.pappaspizza.service.PizzaService;
 import jakarta.persistence.criteria.CriteriaBuilder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,6 +41,13 @@ public class PizzaController {
     @GetMapping("/orders")
     public List<OrderResponse> getAllOrders(){
         return orderService.getAllOrders();
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            path = "/addOrder"  )
+    public OrderResponse addOrder(@RequestBody OrderRequest body){
+        return orderService.addOrder(body);
     }
 
 }

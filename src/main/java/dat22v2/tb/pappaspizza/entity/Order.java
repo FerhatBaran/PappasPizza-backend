@@ -1,6 +1,7 @@
 package dat22v2.tb.pappaspizza.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import dat22v2.tb.pappaspizza.dto.OrderRequest;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,5 +30,6 @@ public class Order {
     private List<Pizza> pizzas = new ArrayList<>();
 
     private boolean confirmed;
+
 
 }

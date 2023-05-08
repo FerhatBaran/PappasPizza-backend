@@ -98,7 +98,7 @@ public class DeveloperData implements ApplicationRunner {
         margherita.getIngredients().add(tomatoSauce);
 
         Pizza pepperoniPizza = new Pizza();
-        pepperoniPizza.setName("Pepperoni");
+        pepperoniPizza.setName("Napoli");
         pepperoniPizza.setPrice(12);
         pepperoniPizza.getIngredients().add(cheese);
         pepperoniPizza.getIngredients().add(tomatoSauce);
@@ -111,6 +111,13 @@ public class DeveloperData implements ApplicationRunner {
         hawaiian.getIngredients().add(tomatoSauce);
         hawaiian.getIngredients().add(ham);
         hawaiian.getIngredients().add(pineapple);
+
+        Pizza custom = new Pizza();
+        custom.setId(80);
+        custom.setName("Custom Pizza");
+        custom.setPrice(10);
+        custom.getIngredients().add(cheese);
+        custom.getIngredients().add(tomatoSauce);
 
         //Orders
 
@@ -126,9 +133,11 @@ public class DeveloperData implements ApplicationRunner {
         order2.getPizzas().add(hawaiian);
         order2.getPizzas().add(pepperoniPizza);
 
+
         pizzaRepository.save(margherita);
         pizzaRepository.save(pepperoniPizza);
         pizzaRepository.save(hawaiian);
+        pizzaRepository.save(custom);
 
         orderRepository.save(order1);
         orderRepository.save(order2);

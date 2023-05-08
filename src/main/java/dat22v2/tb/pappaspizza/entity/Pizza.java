@@ -1,4 +1,5 @@
 package dat22v2.tb.pappaspizza.entity;
+import dat22v2.tb.pappaspizza.service.IngredientService;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,6 +35,17 @@ public class Pizza {
 
     public Integer getId() {
         return id;
+    }
+
+    public void addIngredient(Ingredient ingredient){
+        this.ingredients.add(ingredient);
+    }
+
+    public Pizza(Pizza pizza){
+        this.id = pizza.getId();
+        this.ingredients = pizza.getIngredients();
+        this.name = pizza.getName();
+        this.price = pizza.getPrice();
     }
 
 
