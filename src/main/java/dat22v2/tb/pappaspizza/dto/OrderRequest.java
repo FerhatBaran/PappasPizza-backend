@@ -48,4 +48,15 @@ public class OrderRequest {
                 orderRequest.getPostalCode(), orderRequest.getPickUpTime(),
                 orderRequest.isConfirmed(), orderRequest.getStatus());
     }
+    
+        public static Order getOrderEntity(OrderRequest body) {
+        Order order = Order.builder()
+                .creationDate(LocalDateTime.now())
+                .pizzas(body.getPizzas())
+                .confirmed(body.isConfirmed())
+                .build();
+
+        return order;
+
+    }
 }

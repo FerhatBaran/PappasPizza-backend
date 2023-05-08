@@ -1,5 +1,9 @@
 package dat22v2.tb.pappaspizza.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import dat22v2.tb.pappaspizza.dto.OrderRequest;
+import org.hibernate.annotations.CreationTimestamp;
+import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,12 +25,16 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String phoneNumber;
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @CreationTimestamp
+    private LocalDateTime creationDate;
+    
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "id")
-    private List<Pizza> pizzas;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    private List<Pizza> pizzas = new ArrayList<>();
 
+    private String phoneNumber;
+    
     private String name;
 
     private String address;

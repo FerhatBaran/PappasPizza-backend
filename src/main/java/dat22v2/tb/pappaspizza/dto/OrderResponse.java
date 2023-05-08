@@ -1,9 +1,12 @@
 package dat22v2.tb.pappaspizza.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import dat22v2.tb.pappaspizza.entity.Order;
-import dat22v2.tb.pappaspizza.entity.OrderStatus;
 import dat22v2.tb.pappaspizza.entity.Pizza;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import dat22v2.tb.pappaspizza.entity.OrderStatus;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,8 +19,8 @@ import java.util.List;
 public class OrderResponse {
 
     private Integer id;
-
     private String phoneNumber;
+    private LocalDateTime creationDate;
 
     private List<Pizza> pizzas;
 
@@ -34,6 +37,7 @@ public class OrderResponse {
         this.phoneNumber = order.getPhoneNumber();
         this.name = order.getName();
         this.address = order.getAddress();
+        this.creationDate = order.getCreationDate();
         this.postalCode = order.getPostalCode();
         this.pickUpTime = order.getPickUpTime();
         this.pizzas = order.getPizzas();
