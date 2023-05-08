@@ -5,6 +5,9 @@ import dat22v2.tb.pappaspizza.entity.Ingredient;
 import dat22v2.tb.pappaspizza.entity.Order;
 import dat22v2.tb.pappaspizza.entity.Pizza;
 import dat22v2.tb.pappaspizza.repository.IngredientRepository;
+
+import dat22v2.tb.pappaspizza.entity.OrderStatus;
+
 import dat22v2.tb.pappaspizza.repository.OrderRepository;
 import dat22v2.tb.pappaspizza.repository.PizzaRepository;
 import org.springframework.boot.ApplicationArguments;
@@ -132,6 +135,7 @@ public class DeveloperData implements ApplicationRunner {
         order2.setConfirmed(false);
         order2.getPizzas().add(hawaiian);
         order2.getPizzas().add(pepperoniPizza);
+
 
 
         pizzaRepository.save(margherita);
