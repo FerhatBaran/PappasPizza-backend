@@ -61,4 +61,13 @@ public class Order {
         this.confirmed = confirmed;
         this.status = status;
     }
+
+
+    public void addPizza(Pizza pizza) {
+        if (pizzas == null) {
+            pizzas = new ArrayList<>();
+        }
+        pizzas.add(pizza);
+
+    }
 }

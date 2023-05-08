@@ -28,7 +28,7 @@ public class Pizza {
     //@JsonIgnore
 
     @ManyToMany(cascade = CascadeType.MERGE)
-    private List<Ingredient> ingredients = new ArrayList<>();
+    private List<Ingredient> ingredients;
 
     public void setId(Integer id) {
         this.id = id;
@@ -39,6 +39,9 @@ public class Pizza {
     }
 
     public void addIngredient(Ingredient ingredient){
+        if (ingredients == null) {
+            ingredients = new ArrayList<>();
+        }
         this.ingredients.add(ingredient);
     }
 

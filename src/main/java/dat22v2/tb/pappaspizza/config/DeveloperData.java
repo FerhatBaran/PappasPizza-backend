@@ -10,6 +10,7 @@ import dat22v2.tb.pappaspizza.entity.OrderStatus;
 
 import dat22v2.tb.pappaspizza.repository.OrderRepository;
 import dat22v2.tb.pappaspizza.repository.PizzaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.scheduling.config.ScheduledTaskHolder;
@@ -91,60 +92,84 @@ public class DeveloperData implements ApplicationRunner {
         ingredientRepository.save(greenPeppers);
         ingredientRepository.save(ham);
         ingredientRepository.save(pineapple);
+        /*
+        * */
 
         //Pizza
 
         Pizza margherita = new Pizza();
         margherita.setName("Margherita");
         margherita.setPrice(10);
-        margherita.getIngredients().add(cheese);
-        margherita.getIngredients().add(tomatoSauce);
+        margherita.addIngredient(ingredientRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("pubad")));
+        margherita.addIngredient(ingredientRepository.findById(2).orElseThrow(() -> new EntityNotFoundException("pubad")));
+
+        pizzaRepository.save(margherita);
 
         Pizza pepperoniPizza = new Pizza();
         pepperoniPizza.setName("Napoli");
         pepperoniPizza.setPrice(12);
-        pepperoniPizza.getIngredients().add(cheese);
-        pepperoniPizza.getIngredients().add(tomatoSauce);
-        pepperoniPizza.getIngredients().add(pepperoni);
+        pepperoniPizza.addIngredient(ingredientRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("pubad")));
+        pepperoniPizza.addIngredient(ingredientRepository.findById(2).orElseThrow(() -> new EntityNotFoundException("pubad")));
+        pepperoniPizza.addIngredient(ingredientRepository.findById(3).orElseThrow(() -> new EntityNotFoundException("pubad")));
+
+        pizzaRepository.save(pepperoniPizza);
 
         Pizza hawaiian = new Pizza();
         hawaiian.setName("Hawaiian");
         hawaiian.setPrice(12);
-        hawaiian.getIngredients().add(cheese);
-        hawaiian.getIngredients().add(tomatoSauce);
-        hawaiian.getIngredients().add(ham);
-        hawaiian.getIngredients().add(pineapple);
+        hawaiian.addIngredient(ingredientRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("pubad")));
+        hawaiian.addIngredient(ingredientRepository.findById(2).orElseThrow(() -> new EntityNotFoundException("pubad")));
+        hawaiian.addIngredient(ingredientRepository.findById(10).orElseThrow(() -> new EntityNotFoundException("pubad")));
+        hawaiian.addIngredient(ingredientRepository.findById(11).orElseThrow(() -> new EntityNotFoundException("pubad")));
+        pizzaRepository.save(hawaiian);
 
         Pizza custom = new Pizza();
         custom.setId(80);
         custom.setName("Custom Pizza");
         custom.setPrice(10);
-        custom.getIngredients().add(cheese);
-        custom.getIngredients().add(tomatoSauce);
+        custom.addIngredient(ingredientRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("pubad")));
+        custom.addIngredient(ingredientRepository.findById(2).orElseThrow(() -> new EntityNotFoundException("pubad")));
+
+        pizzaRepository.save(custom);
 
         //Orders
 
-        Order order1 = new Order();
-        order1.setCreationDate(LocalDateTime.now());
-        order1.setConfirmed(false);
-        order1.getPizzas().add(margherita);
-        order1.getPizzas().add(pepperoniPizza);
 
-        Order order2 = new Order();
-        order2.setCreationDate(LocalDateTime.now());
-        order2.setConfirmed(false);
-        order2.getPizzas().add(hawaiian);
-        order2.getPizzas().add(pepperoniPizza);
-
+        Order order1 = Order.builder().phoneNumber("12345678")
+            .name("bob")
+            .creationDate(LocalDateTime.now())
+            .address("test")
+            .postalCode(2000)
+            .pickUpTime(LocalDateTime.of(2020,10,23,5,5,5))
+            .confirmed(false)
+            .status(OrderStatus.FRESH)
+            .build();
 
 
-        pizzaRepository.save(margherita);
-        pizzaRepository.save(pepperoniPizza);
-        pizzaRepository.save(hawaiian);
-        pizzaRepository.save(custom);
-
+        order1.addPizza(pizzaRepository.findById(1));
+        order1.addPizza(pizzaRepository.findById(2));
         orderRepository.save(order1);
+
+
+        Order order2 = Order.builder().phoneNumber("87654321")
+            .name("lise")
+            .address("test2")
+            .creationDate(LocalDateTime.now())
+            .postalCode(2000)
+            .pickUpTime(LocalDateTime.of(2020,10,23,5,5,5))
+            .confirmed(true)
+            .status(OrderStatus.IN_PROGRESS)
+            .build();
+
+
+        order2.addPizza(pizzaRepository.findById(3));
+        order2.addPizza(pizzaRepository.findById(4));
         orderRepository.save(order2);
+
+/*
+* */
+
+
 
 
     }

@@ -24,7 +24,7 @@ public class IngredientService {
 
     public List<IngredientResponse> getAllIngredients() {
         List<Ingredient> ingredients = ingredientRepository.findAll();
-        List<IngredientResponse> ingredientResponses = new ArrayList<>();
+        List<IngredientResponse> ingredientResponses;
         ingredientResponses = ingredients.stream().map(ingredient -> new IngredientResponse(ingredient)).toList();
         return ingredientResponses;
     }

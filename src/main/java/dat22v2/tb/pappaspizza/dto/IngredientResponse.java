@@ -17,6 +17,9 @@ public class IngredientResponse {
     private int price;
 
     public IngredientResponse(Ingredient ingredient) {
+        this.id = ingredient.getId();
+        this.name = ingredient.getName();
+        this.price = ingredient.getPrice();
 
     }
 }

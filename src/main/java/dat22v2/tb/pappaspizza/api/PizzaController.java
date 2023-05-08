@@ -38,16 +38,6 @@ public class PizzaController {
         return ingredientService.getAllIngredients();
     }
 
-    @GetMapping("/orders")
-    public List<OrderResponse> getAllOrders(){
-        return orderService.getAllOrders();
-    }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            path = "/addOrder"  )
-    public OrderResponse addOrder(@RequestBody OrderRequest body){
-        return orderService.addOrder(body);
-    }
 
 }

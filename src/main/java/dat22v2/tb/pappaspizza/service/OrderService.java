@@ -42,7 +42,7 @@ public class OrderService {
 
         body.setPizzas(checkForCustomPizzas(body)); //Sets the list of pizzas to the corrected pricing and custom pizzas.
 
-        Order order = orderRepository.save(OrderRequest.getOrderEntity(body));
+        Order order = orderRepository.save( new OrderRequest().getOrderEntity(body));
         return new OrderResponse(order);
     }
 

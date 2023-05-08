@@ -1,7 +1,9 @@
 package dat22v2.tb.pappaspizza.api;
 
+import dat22v2.tb.pappaspizza.dto.OrderRequest;
 import dat22v2.tb.pappaspizza.dto.OrderResponse;
 import dat22v2.tb.pappaspizza.service.OrderService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +23,7 @@ public class OrderController {
 
     @GetMapping("/viewAll")
     public List<OrderResponse> getAllOrders(){
-        return orderService.getOrders();
+        return orderService.getAllOrders();
     }
 
     @GetMapping("/viewConfirmed")
@@ -38,5 +40,12 @@ public class OrderController {
     @PatchMapping("status/{id}")
     public void changeStatus(@PathVariable Integer id, @RequestParam String newStatus){
         orderService.changeStatus(id, newStatus);
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE,
+        path = "/addOrder"  )
+    public OrderResponse addOrder(@RequestBody OrderRequest body){
+        return orderService.addOrder(body);
     }
 }

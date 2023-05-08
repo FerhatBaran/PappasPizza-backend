@@ -31,7 +31,7 @@ public class OrderRequest {
 
     public OrderRequest(String phoneNumber, List<Pizza> pizzas, String name,
                         String address, int postalCode, LocalDateTime pickUpTime,
-                        OrderStatus status, boolean confirmed){
+                        OrderStatus status, boolean confirmed) {
         this.phoneNumber = phoneNumber;
         this.pizzas = pizzas;
         this.name = name;
@@ -42,21 +42,16 @@ public class OrderRequest {
         this.status = status;
     }
 
-    public Order getOrderEntity(OrderRequest orderRequest){
-        return new Order(orderRequest.getPhoneNumber(), orderRequest.getPizzas(),
-                orderRequest.getName(), orderRequest.getAddress(),
-                orderRequest.getPostalCode(), orderRequest.getPickUpTime(),
-                orderRequest.isConfirmed(), orderRequest.getStatus());
+    public Order getOrderEntity(OrderRequest orderRequest) {
+        return new Order(
+            orderRequest.getPhoneNumber(),
+            orderRequest.getPizzas(),
+            orderRequest.getName(),
+            orderRequest.getAddress(),
+            orderRequest.getPostalCode(),
+            orderRequest.getPickUpTime(),
+            orderRequest.isConfirmed(),
+            orderRequest.getStatus());
     }
-    
-        public static Order getOrderEntity(OrderRequest body) {
-        Order order = Order.builder()
-                .creationDate(LocalDateTime.now())
-                .pizzas(body.getPizzas())
-                .confirmed(body.isConfirmed())
-                .build();
 
-        return order;
-
-    }
 }
