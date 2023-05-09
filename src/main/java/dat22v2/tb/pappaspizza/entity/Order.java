@@ -28,13 +28,16 @@ public class Order {
     @JsonFormat(pattern = "yyyy-MM-dd")
     @CreationTimestamp
     private LocalDateTime creationDate;
-    
+
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.MERGE)
-    private List<Pizza> pizzas = new ArrayList<>();
+    List<Pizza> pizzas;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    List<Drink> drinks;
 
     private String phoneNumber;
-    
+
     private String name;
 
     private String address;
@@ -68,6 +71,17 @@ public class Order {
             pizzas = new ArrayList<>();
         }
         pizzas.add(pizza);
-
     }
+
+
+    public void addDrink(Drink drink) {
+        if (drinks == null) {
+            drinks = new ArrayList<>();
+        }
+        drinks.add(drink);
+    }
+
+
+
+
 }

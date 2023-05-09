@@ -1,15 +1,13 @@
 package dat22v2.tb.pappaspizza.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import dat22v2.tb.pappaspizza.entity.Order;
-import dat22v2.tb.pappaspizza.entity.Pizza;
-import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 import dat22v2.tb.pappaspizza.entity.OrderStatus;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Getter
 @Setter
@@ -22,7 +20,8 @@ public class OrderResponse {
     private String phoneNumber;
     private LocalDateTime creationDate;
 
-    private List<Pizza> pizzas;
+    private List<PizzaResponse> pizzas;
+    private List<DrinkResponse> drinks;
 
     private String name;
     private String address;
@@ -40,7 +39,8 @@ public class OrderResponse {
         this.creationDate = order.getCreationDate();
         this.postalCode = order.getPostalCode();
         this.pickUpTime = order.getPickUpTime();
-        this.pizzas = order.getPizzas();
+        this.pizzas = order.getPizzas().stream().map(PizzaResponse::new).collect(Collectors.toList());
+        this.drinks = order.getDrinks().stream().map(DrinkResponse::new).collect(Collectors.toList());
         this.confirmed = order.isConfirmed();
         this.status = order.getStatus();
     }

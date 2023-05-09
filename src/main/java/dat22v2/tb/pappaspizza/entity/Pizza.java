@@ -1,7 +1,10 @@
 package dat22v2.tb.pappaspizza.entity;
-import dat22v2.tb.pappaspizza.service.IngredientService;
 import jakarta.persistence.*;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import lombok.*;
 
 import java.util.ArrayList;

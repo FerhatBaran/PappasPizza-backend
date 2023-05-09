@@ -1,15 +1,12 @@
 package dat22v2.tb.pappaspizza.config;
 
 import com.fasterxml.jackson.databind.deser.SettableBeanProperty;
-import dat22v2.tb.pappaspizza.entity.Ingredient;
-import dat22v2.tb.pappaspizza.entity.Order;
-import dat22v2.tb.pappaspizza.entity.Pizza;
+import dat22v2.tb.pappaspizza.entity.*;
 import dat22v2.tb.pappaspizza.repository.IngredientRepository;
-
-import dat22v2.tb.pappaspizza.entity.OrderStatus;
 
 import dat22v2.tb.pappaspizza.repository.OrderRepository;
 import dat22v2.tb.pappaspizza.repository.PizzaRepository;
+import dat22v2.tb.pappaspizza.repository.ReceiptRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -25,10 +22,13 @@ public class DeveloperData implements ApplicationRunner {
     OrderRepository orderRepository;
     PizzaRepository pizzaRepository;
 
-    public DeveloperData(IngredientRepository ingredientRepository, OrderRepository orderRepository, PizzaRepository pizzaRepository) {
+    ReceiptRepository receiptRepository;
+
+    public DeveloperData(IngredientRepository ingredientRepository, OrderRepository orderRepository, PizzaRepository pizzaRepository, ReceiptRepository receiptRepository) {
         this.ingredientRepository = ingredientRepository;
         this.orderRepository = orderRepository;
         this.pizzaRepository = pizzaRepository;
+        this.receiptRepository = receiptRepository;
     }
 
     @Override
@@ -166,8 +166,13 @@ public class DeveloperData implements ApplicationRunner {
         order2.addPizza(pizzaRepository.findById(4));
         orderRepository.save(order2);
 
-/*
-* */
+
+        Receipt receipt = new Receipt();
+
+        receipt.setOrder(order2);
+
+        receiptRepository.save(receipt);
+
 
 
 
