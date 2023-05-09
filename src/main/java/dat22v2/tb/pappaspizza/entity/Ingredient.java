@@ -1,7 +1,6 @@
 package dat22v2.tb.pappaspizza.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -9,14 +8,16 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 @Entity
+@Table(name = "ingredient")
 public class Ingredient {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-  @Id
-  private Integer id;
-  private String name;
-  private double price;
+    private String name;
 
+    private Double price;
 
-  // Constructors, getters, and setters
 }

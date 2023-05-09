@@ -4,20 +4,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
+
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
 public class Drink {
-  private String brand;
-  private String size;
 
-  private double price;
-  @Id
-  private int id;
+    @Id
+    private int id;
 
-  // Constructors, getters, and setters
+    String brand;
+
+    String size;
+
+    Double price;
 }
-

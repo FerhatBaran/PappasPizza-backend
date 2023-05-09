@@ -1,7 +1,10 @@
 package dat22v2.tb.pappaspizza.entity;
-
-import dat22v2.tb.pappaspizza.dto.PizzaResponse;
 import jakarta.persistence.*;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -15,13 +18,42 @@ import java.util.List;
 @Builder
 
 @Entity
-public class Pizza{
-
+@Table(name = "pizza")
+public class Pizza {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String name;
-    private double price;
+
+    private Double price;
+
+    //@JsonIgnore
+
     @ManyToMany(cascade = CascadeType.MERGE)
     private List<Ingredient> ingredients;
-    // Constructors, getters, and setters
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void addIngredient(Ingredient ingredient){
+        if (ingredients == null) {
+            ingredients = new ArrayList<>();
+        }
+        this.ingredients.add(ingredient);
+    }
+
+    public Pizza(Pizza pizza){
+        this.id = pizza.getId();
+        this.ingredients = pizza.getIngredients();
+        this.name = pizza.getName();
+        this.price = pizza.getPrice();
+    }
+
+
 }

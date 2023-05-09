@@ -1,19 +1,16 @@
 package dat22v2.tb.pappaspizza.api;
 
 
-import dat22v2.tb.pappaspizza.config.DeveloperData;
+import dat22v2.tb.pappaspizza.dto.*;
+import dat22v2.tb.pappaspizza.service.IngredientService;
+import dat22v2.tb.pappaspizza.service.OrderService;
 import dat22v2.tb.pappaspizza.dto.DrinkResponse;
 import dat22v2.tb.pappaspizza.dto.PizzaResponse;
-import dat22v2.tb.pappaspizza.entity.Drink;
-import dat22v2.tb.pappaspizza.entity.Pizza;
 import dat22v2.tb.pappaspizza.service.DrinkService;
 import dat22v2.tb.pappaspizza.service.PizzaService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
@@ -21,22 +18,23 @@ import java.util.List;
 public class PizzaController {
 
 
-    DeveloperData developerData;
     PizzaService pizzaService;
+    IngredientService ingredientService;
+    OrderService orderService;
 
     DrinkService drinkService;
 
 
-    public PizzaController(PizzaService pizzaService, DrinkService drinkService) {
+    public PizzaController(PizzaService pizzaService, IngredientService ingredientService, OrderService orderService) {
         this.pizzaService = pizzaService;
-        this.drinkService = drinkService;
+        this.ingredientService = ingredientService;
+        this.orderService = orderService;
     }
 
-    @GetMapping ("/pizzas")
-    public List<PizzaResponse> getPizzas(){
-        return pizzaService.getPizzas();
+    @GetMapping
+    public List<PizzaResponse> getAllPizzas(){
+        return pizzaService.getAllPizzas();
     }
-
     //Do the same as pizza
     //make it a Drink service
     //and drink response
@@ -45,6 +43,10 @@ public class PizzaController {
         return drinkService.getDrinks();
     }
 
+    @GetMapping("/ingredients")
+    public List<IngredientResponse> getAllIngredients(){
+        return ingredientService.getAllIngredients();
+    }
 
 
 
