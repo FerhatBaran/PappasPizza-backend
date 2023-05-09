@@ -2,10 +2,7 @@ package dat22v2.tb.pappaspizza.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import dat22v2.tb.pappaspizza.dto.ReceiptResponse;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,6 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 public class Receipt {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     public void setId(Integer id) {

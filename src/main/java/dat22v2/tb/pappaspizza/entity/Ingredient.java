@@ -1,30 +1,27 @@
 package dat22v2.tb.pappaspizza.entity;
 
+import jakarta.persistence.*;
+import lombok.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+
 @Entity
+@Table(name = "ingredient")
 public class Ingredient {
-
-
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    private String name;
 
-    public int getId() {
-        return id;
-    }
-
-
-    String name;
-    Double price;
+    private int price;
 
 }

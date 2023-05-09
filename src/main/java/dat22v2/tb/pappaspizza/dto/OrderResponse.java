@@ -1,15 +1,13 @@
 package dat22v2.tb.pappaspizza.dto;
 
-import dat22v2.tb.pappaspizza.entity.Drink;
 import dat22v2.tb.pappaspizza.entity.Order;
-import dat22v2.tb.pappaspizza.entity.Pizza;
-import jakarta.persistence.ManyToMany;
 import lombok.*;
+import dat22v2.tb.pappaspizza.entity.OrderStatus;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @Getter
 @Setter
@@ -18,31 +16,32 @@ import java.util.stream.Collectors;
 @Builder
 public class OrderResponse {
 
+    private Integer id;
+    private String phoneNumber;
+    private LocalDateTime creationDate;
 
-    List<PizzaResponse> pizzas;
+    private List<PizzaResponse> pizzas;
+    private List<DrinkResponse> drinks;
 
+    private String name;
+    private String address;
+    private int postalCode;
+    private LocalDateTime pickUpTime;
 
-    List<DrinkResponse> drinks;
+    private boolean confirmed;
+    private OrderStatus status;
 
-    LocalDateTime created;
-
-    Boolean confirmed;
-
-    LocalDateTime deliveryTime;
-
-
-
-
-
-    public OrderResponse(Order order) {
+    public OrderResponse(Order order){
+        this.id = order.getId();
+        this.phoneNumber = order.getPhoneNumber();
+        this.name = order.getName();
+        this.address = order.getAddress();
+        this.creationDate = order.getCreationDate();
+        this.postalCode = order.getPostalCode();
+        this.pickUpTime = order.getPickUpTime();
         this.pizzas = order.getPizzas().stream().map(PizzaResponse::new).collect(Collectors.toList());
         this.drinks = order.getDrinks().stream().map(DrinkResponse::new).collect(Collectors.toList());
-        this.created = order.getCreated();
-        this.confirmed = order.getConfirmed();
-        this.deliveryTime = order.getDeliveryTime();
-
-
-
+        this.confirmed = order.isConfirmed();
+        this.status = order.getStatus();
     }
-
 }

@@ -1,21 +1,25 @@
 package dat22v2.tb.pappaspizza.dto;
 
 import dat22v2.tb.pappaspizza.entity.Ingredient;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class IngredientResponse {
 
-    String name;
-    Double price;
+    private Integer id;
+
+    private String name;
+
+    private int price;
 
     public IngredientResponse(Ingredient ingredient) {
+        this.id = ingredient.getId();
         this.name = ingredient.getName();
         this.price = ingredient.getPrice();
+
     }
 }
