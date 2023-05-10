@@ -20,7 +20,6 @@ public class OrderItemRequest {
 
     Integer pizzaTypeId;
 
-    Integer drinkTypeId;
 
 
 }

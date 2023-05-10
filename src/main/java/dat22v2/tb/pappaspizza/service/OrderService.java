@@ -20,15 +20,16 @@ public class OrderService {
 
     IngredientRepository ingredientRepository;
 
-    ConsumableRepository consumableRepository;
     DrinkRepository drinkRepository;
 
-    public OrderService(OrderRepository orderRepository, PizzaRepository pizzaRepository, IngredientRepository ingredientRepository, ConsumableRepository consumableRepository, DrinkRepository drinkRepository) {
+    PizzaTypeRepository pizzaTypeRepository;
+
+    public OrderService(OrderRepository orderRepository, PizzaRepository pizzaRepository, IngredientRepository ingredientRepository, DrinkRepository drinkRepository, PizzaTypeRepository pizzaTypeRepository) {
         this.orderRepository = orderRepository;
         this.pizzaRepository = pizzaRepository;
         this.ingredientRepository = ingredientRepository;
-        this.consumableRepository = consumableRepository;
         this.drinkRepository = drinkRepository;
+        this.pizzaTypeRepository = pizzaTypeRepository;
     }
 
     public List<OrderResponse> getAllOrders() {
@@ -46,6 +47,7 @@ public class OrderService {
         );
         order.getOrderItems().forEach(e -> e.setOrder(order));
 
+
         OrderResponse orderResponse = new OrderResponse(orderRepository.save(order));
         return orderResponse;
     }
@@ -53,20 +55,21 @@ public class OrderService {
     private OrderItem getOrderItem(OrderItemRequest orderItemRequest) {
         OrderItem orderItem = new OrderItem();
         if (orderItemRequest.getPizzaId() != null) {
-            orderItem.setConsumable(pizzaRepository.findById(orderItemRequest.getPizzaId()).orElseThrow(() -> new EntityNotFoundException("test pizza")));
+            orderItem.setConsumable(pizzaRepository.findById(orderItemRequest.getPizzaId()).orElseThrow(() -> new EntityNotFoundException("Pizzaen findes ikke")));
         }
         if (orderItemRequest.getDrinkId() != null) {
-            orderItem.setConsumable(drinkRepository.findById(orderItemRequest.getDrinkId()).orElseThrow(() -> new EntityNotFoundException("test drink")));
+            orderItem.setConsumable(drinkRepository.findById(orderItemRequest.getDrinkId()).orElseThrow(() -> new EntityNotFoundException("Drikkevaren findes ikke")));
         }
         orderItem.setQuantity(orderItemRequest.getQuantity());
 
         if (orderItemRequest.getAdded() != null) {
             orderItem.setAdded(ingredientRepository.findByIdIn(orderItemRequest.getAdded()));
-
         }
         if (orderItemRequest.getRemoved() != null) {
             orderItem.setRemoved(ingredientRepository.findByIdIn(orderItemRequest.getRemoved()));
-
+        }
+        if (orderItemRequest.getPizzaTypeId() != null) {
+            orderItem.setPizzaType(pizzaTypeRepository.findById(orderItemRequest.getPizzaTypeId()).orElseThrow(() -> new EntityNotFoundException("Ingen type af denne pizza")));
         }
         return orderItem;
     }

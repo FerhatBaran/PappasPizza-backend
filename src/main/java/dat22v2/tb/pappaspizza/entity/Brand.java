@@ -1,6 +1,7 @@
 package dat22v2.tb.pappaspizza.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +20,7 @@ public class Brand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "brand")
     private List<Drink> drinks;
 

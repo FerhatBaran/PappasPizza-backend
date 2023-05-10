@@ -31,8 +31,6 @@ public class OrderItem {
     List<Ingredient> added;
     @ManyToMany
     List<Ingredient> removed;
-
-
     @ManyToOne
     PizzaType pizzaType;
 

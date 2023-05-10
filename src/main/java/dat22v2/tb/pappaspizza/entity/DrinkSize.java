@@ -1,6 +1,7 @@
 package dat22v2.tb.pappaspizza.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,7 +27,7 @@ public class DrinkSize {
     @Column(unique = true)
     String size;
 
-
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "drinkSize")
     List<Drink> drinks;
 
