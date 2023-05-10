@@ -1,11 +1,10 @@
 package dat22v2.tb.pappaspizza.service;
 
-import dat22v2.tb.pappaspizza.dto.IngredientResponse;
-import dat22v2.tb.pappaspizza.dto.OrderItemRequest;
-import dat22v2.tb.pappaspizza.dto.OrderRequest;
+import dat22v2.tb.pappaspizza.dto.orderitem.OrderItemRequest;
+import dat22v2.tb.pappaspizza.dto.order.OrderRequest;
 import dat22v2.tb.pappaspizza.entity.*;
 import dat22v2.tb.pappaspizza.repository.*;
-import dat22v2.tb.pappaspizza.dto.OrderResponse;
+import dat22v2.tb.pappaspizza.dto.order.OrderResponse;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 

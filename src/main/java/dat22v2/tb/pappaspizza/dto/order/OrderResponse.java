@@ -1,5 +1,6 @@
-package dat22v2.tb.pappaspizza.dto;
+package dat22v2.tb.pappaspizza.dto.order;
 
+import dat22v2.tb.pappaspizza.dto.orderitem.OrderItemResponse;
 import dat22v2.tb.pappaspizza.entity.Order;
 import lombok.*;
 import dat22v2.tb.pappaspizza.entity.OrderStatus;

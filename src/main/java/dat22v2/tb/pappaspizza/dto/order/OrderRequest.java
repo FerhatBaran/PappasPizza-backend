@@ -1,9 +1,7 @@
-package dat22v2.tb.pappaspizza.dto;
+package dat22v2.tb.pappaspizza.dto.order;
 
-import dat22v2.tb.pappaspizza.entity.Order;
-import dat22v2.tb.pappaspizza.entity.OrderItem;
+import dat22v2.tb.pappaspizza.dto.orderitem.OrderItemRequest;
 import dat22v2.tb.pappaspizza.entity.OrderStatus;
-import dat22v2.tb.pappaspizza.entity.Pizza;
 import lombok.*;
 
 import java.time.LocalDateTime;

@@ -1,12 +1,7 @@
 package dat22v2.tb.pappaspizza.api;
 
 
-import dat22v2.tb.pappaspizza.dto.*;
-import dat22v2.tb.pappaspizza.service.IngredientService;
-import dat22v2.tb.pappaspizza.service.OrderService;
-import dat22v2.tb.pappaspizza.dto.DrinkResponse;
-import dat22v2.tb.pappaspizza.dto.PizzaResponse;
-import dat22v2.tb.pappaspizza.service.DrinkService;
+import dat22v2.tb.pappaspizza.dto.pizza.PizzaResponse;
 import dat22v2.tb.pappaspizza.service.PizzaService;
 
 import java.util.List;

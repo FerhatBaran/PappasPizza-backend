@@ -1,7 +1,7 @@
 package dat22v2.tb.pappaspizza.api;
 
 
-import dat22v2.tb.pappaspizza.dto.DrinkResponse;
+import dat22v2.tb.pappaspizza.dto.drink.DrinkResponse;
 import dat22v2.tb.pappaspizza.service.DrinkService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

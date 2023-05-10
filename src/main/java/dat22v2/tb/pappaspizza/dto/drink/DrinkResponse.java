@@ -1,4 +1,4 @@
-package dat22v2.tb.pappaspizza.dto;
+package dat22v2.tb.pappaspizza.dto.drink;
 
 import dat22v2.tb.pappaspizza.entity.Drink;
 import lombok.*;

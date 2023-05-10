@@ -1,6 +1,6 @@
-package dat22v2.tb.pappaspizza.dto;
+package dat22v2.tb.pappaspizza.dto.pizza;
 
-import dat22v2.tb.pappaspizza.entity.Ingredient;
+import dat22v2.tb.pappaspizza.dto.ingredient.IngredientResponse;
 import dat22v2.tb.pappaspizza.entity.Pizza;
 import lombok.*;
 

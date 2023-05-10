@@ -1,7 +1,7 @@
 package dat22v2.tb.pappaspizza.api;
 
-import dat22v2.tb.pappaspizza.dto.OrderRequest;
-import dat22v2.tb.pappaspizza.dto.OrderResponse;
+import dat22v2.tb.pappaspizza.dto.order.OrderRequest;
+import dat22v2.tb.pappaspizza.dto.order.OrderResponse;
 import dat22v2.tb.pappaspizza.service.OrderService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,6 @@
 package dat22v2.tb.pappaspizza.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dat22v2.tb.pappaspizza.dto.OrderItemRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
