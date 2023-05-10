@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("api/orders")
+@RequestMapping("/api/orders")
 public class OrderController {
 
 
@@ -20,7 +20,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/viewAll")
+    @GetMapping()
     public List<OrderResponse> getAllOrders(){
         return orderService.getAllOrders();
     }

@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,27 +20,17 @@ import java.util.List;
 
 @Entity
 @Table(name = "pizza")
-public class Pizza {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+@DiscriminatorColumn(name = "consumable_type")
+public class Pizza extends Consumable{
 
     private String name;
 
-    private Double price;
+    @ManyToOne
+    private PizzaType pizzaType;
 
-    //@JsonIgnore
 
     @ManyToMany(cascade = CascadeType.MERGE)
     private List<Ingredient> ingredients;
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
 
     public void addIngredient(Ingredient ingredient){
         if (ingredients == null) {
@@ -48,11 +39,13 @@ public class Pizza {
         this.ingredients.add(ingredient);
     }
 
-    public Pizza(Pizza pizza){
-        this.id = pizza.getId();
-        this.ingredients = pizza.getIngredients();
-        this.name = pizza.getName();
-        this.price = pizza.getPrice();
+
+    public Pizza(int id, String name,double price, PizzaType pizzaType, List<Ingredient> ingredients) {
+        super.setId(id);
+        super.setPrice(price);
+        this.name = name;
+        this.pizzaType = pizzaType;
+        this.ingredients = ingredients;
     }
 
 

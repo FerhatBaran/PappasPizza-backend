@@ -14,16 +14,12 @@ public class DrinkResponse {
 
     String brand;
 
-    String size;
-
-    Double price;
+    DrinkTypeResponse drinkTypeResponse;
 
 
     public DrinkResponse(Drink drink) {
-        this.brand = drink.getBrand();
-        this.size = drink.getSize();
-        this.price = drink.getPrice();
         this.id = drink.getId();
-
+        this.brand = drink.getBrand();
+        this.drinkTypeResponse = new DrinkTypeResponse(drink.getDrinkType());
     }
 }

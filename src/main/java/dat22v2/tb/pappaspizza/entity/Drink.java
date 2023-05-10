@@ -1,7 +1,6 @@
 package dat22v2.tb.pappaspizza.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 
@@ -11,14 +10,12 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Drink {
-
-    @Id
-    private int id;
+@DiscriminatorColumn(name = "consumable_type")
+public class Drink extends Consumable{
 
     String brand;
 
-    String size;
+    @ManyToOne
+    private DrinkType drinkType;
 
-    Double price;
 }

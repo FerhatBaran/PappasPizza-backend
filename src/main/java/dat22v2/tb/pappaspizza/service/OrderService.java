@@ -1,15 +1,11 @@
 package dat22v2.tb.pappaspizza.service;
 
 import dat22v2.tb.pappaspizza.dto.IngredientResponse;
+import dat22v2.tb.pappaspizza.dto.OrderItemRequest;
 import dat22v2.tb.pappaspizza.dto.OrderRequest;
-import dat22v2.tb.pappaspizza.entity.Ingredient;
-import dat22v2.tb.pappaspizza.entity.Pizza;
-import dat22v2.tb.pappaspizza.repository.IngredientRepository;
+import dat22v2.tb.pappaspizza.entity.*;
+import dat22v2.tb.pappaspizza.repository.*;
 import dat22v2.tb.pappaspizza.dto.OrderResponse;
-import dat22v2.tb.pappaspizza.entity.Order;
-import dat22v2.tb.pappaspizza.entity.OrderStatus;
-import dat22v2.tb.pappaspizza.repository.OrderRepository;
-import dat22v2.tb.pappaspizza.repository.PizzaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -25,10 +21,15 @@ public class OrderService {
 
     IngredientRepository ingredientRepository;
 
-    public OrderService(OrderRepository orderRepository, PizzaRepository pizzaRepository, IngredientRepository ingredientRepository) {
+    ConsumableRepository consumableRepository;
+    DrinkRepository drinkRepository;
+
+    public OrderService(OrderRepository orderRepository, PizzaRepository pizzaRepository, IngredientRepository ingredientRepository, ConsumableRepository consumableRepository, DrinkRepository drinkRepository) {
         this.orderRepository = orderRepository;
         this.pizzaRepository = pizzaRepository;
         this.ingredientRepository = ingredientRepository;
+        this.consumableRepository = consumableRepository;
+        this.drinkRepository = drinkRepository;
     }
 
     public List<OrderResponse> getAllOrders() {
@@ -38,6 +39,43 @@ public class OrderService {
         return orderResponses;
     }
 
+
+    public OrderResponse addOrder(OrderRequest orderRequest) {
+        Order order = Order.getOrderEntity(orderRequest);
+        order.setOrderItems(
+            orderRequest.getOrderItems().stream().map(this::getOrderItem).toList()
+        );
+        order.getOrderItems().forEach(e -> e.setOrder(order));
+
+        OrderResponse orderResponse = new OrderResponse(orderRepository.save(order));
+        return orderResponse;
+    }
+
+    private OrderItem getOrderItem(OrderItemRequest orderItemRequest) {
+        OrderItem orderItem = new OrderItem();
+        if (orderItemRequest.getPizzaId() != null) {
+            orderItem.setConsumable(pizzaRepository.findById(orderItemRequest.getPizzaId()).orElseThrow(() -> new EntityNotFoundException("test pizza")));
+        }
+        if (orderItemRequest.getDrinkId() != null) {
+            orderItem.setConsumable(drinkRepository.findById(orderItemRequest.getDrinkId()).orElseThrow(() -> new EntityNotFoundException("test drink")));
+        }
+        orderItem.setQuantity(orderItemRequest.getQuantity());
+
+        if (orderItemRequest.getAdded() != null) {
+            orderItem.setAdded(ingredientRepository.findByIdIn(orderItemRequest.getAdded()));
+
+        }
+        if (orderItemRequest.getRemoved() != null) {
+            orderItem.setRemoved(ingredientRepository.findByIdIn(orderItemRequest.getRemoved()));
+
+        }
+
+        return orderItem;
+    }
+
+
+
+/*
     public OrderResponse addOrder(OrderRequest body) {
 
         body.setPizzas(checkForCustomPizzas(body)); //Sets the list of pizzas to the corrected pricing and custom pizzas.
@@ -45,7 +83,8 @@ public class OrderService {
         Order order = orderRepository.save( new OrderRequest().getOrderEntity(body));
         return new OrderResponse(order);
     }
-
+* */
+/*
     private List<Pizza> checkForCustomPizzas(OrderRequest body) {
 
         List<Pizza> pizzas = body.getPizzas();
@@ -94,13 +133,14 @@ public class OrderService {
         }
         return pizzas;
       }
+* */
 
     public List<OrderResponse> getConfirmedOrders() {
         List<Order> orders = orderRepository.findAll();
         List<Order> confirmedOrders = new ArrayList<>();
         List<OrderResponse> orderResponses = new ArrayList<>();
         for (Order order : orders) {
-            if (order.isConfirmed()){
+            if (order.getConfirmed()){
                 confirmedOrders.add(order);
             }
 
@@ -112,7 +152,7 @@ public class OrderService {
     public void confirmOrder(Integer id) {
        Order order = orderRepository.findById(id).orElseThrow(()
                -> new EntityNotFoundException("Kunne ikke finde Order"));
-       boolean value = !order.isConfirmed();
+       boolean value = !order.getConfirmed();
        order.setConfirmed(value);
        orderRepository.save(order);
     }

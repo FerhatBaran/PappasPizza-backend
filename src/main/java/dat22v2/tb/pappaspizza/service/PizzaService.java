@@ -1,5 +1,6 @@
 package dat22v2.tb.pappaspizza.service;
 
+import dat22v2.tb.pappaspizza.dto.IngredientResponse;
 import dat22v2.tb.pappaspizza.dto.PizzaResponse;
 import dat22v2.tb.pappaspizza.entity.Pizza;
 import dat22v2.tb.pappaspizza.repository.IngredientRepository;
