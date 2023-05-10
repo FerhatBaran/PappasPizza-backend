@@ -48,7 +48,6 @@ public class OrderService {
         order.getOrderItems().forEach(e -> e.setOrder(order));
 
         OrderResponse orderResponse = new OrderResponse(orderRepository.save(order));
-        System.out.println("miav");
         return orderResponse;
     }
 

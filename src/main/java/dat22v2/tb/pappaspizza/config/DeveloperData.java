@@ -38,7 +38,7 @@ public class DeveloperData implements ApplicationRunner {
 
         ingredientList();
         pizzaTypes();
-        pizzaList();
+        ferhatsPizzaList();
 
 
 
@@ -46,12 +46,48 @@ public class DeveloperData implements ApplicationRunner {
     }
 
 
+    public void ferhatsPizzaList() {
+
+        ArrayList<Pizza> pizzaList = new ArrayList<>(Arrays.asList(
+            new Pizza(1, "Margherita", 68.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"))),
+            new Pizza(2, "Vesuvio", 70.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Skinke"))),
+            new Pizza(3, "Hawaii", 75.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Skinke"), ingredientRepository.findIngredientByNameIgnoreCase("Ananas"))),
+            new Pizza(5, "Mix pizza", 85.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Bacon"), ingredientRepository.findIngredientByNameIgnoreCase("Pepperoni"), ingredientRepository.findIngredientByNameIgnoreCase("Shawarma"))),
+            new Pizza(6, "Capricciosa", 75.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Skinke"), ingredientRepository.findIngredientByNameIgnoreCase("Champignon"))),
+            new Pizza(7, "Denmark special", 85.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Skinke"), ingredientRepository.findIngredientByNameIgnoreCase("Bacon"), ingredientRepository.findIngredientByNameIgnoreCase("Pepperoni"), ingredientRepository.findIngredientByNameIgnoreCase("Løg"))),
+            new Pizza(8, "Napoli", 70.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Pepperoni"))),
+            new Pizza(9, "Bolognese", 80.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Kødsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Løg"))),
+            new Pizza(10, "Kylling pizza", 80.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Kylling"), ingredientRepository.findIngredientByNameIgnoreCase("Salat dressing"), ingredientRepository.findIngredientByNameIgnoreCase("Dressing"))),
+            new Pizza(11, "Romani", 85.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Pepperoni"), ingredientRepository.findIngredientByNameIgnoreCase("Kødstrimler"), ingredientRepository.findIngredientByNameIgnoreCase("Gorgonzola"))),
+            new Pizza(12, "Orient", 85.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Champignon"), ingredientRepository.findIngredientByNameIgnoreCase("Shawarma"), ingredientRepository.findIngredientByNameIgnoreCase("Løg"), ingredientRepository.findIngredientByNameIgnoreCase("Kylling"))),
+            new Pizza(13, "Pappas", 85.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Bacon"), ingredientRepository.findIngredientByNameIgnoreCase("Pepperoni"), ingredientRepository.findIngredientByNameIgnoreCase("æg"))),
+            new Pizza(14, "Vegetaria", 80.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Ananas"), ingredientRepository.findIngredientByNameIgnoreCase("Champignon"), ingredientRepository.findIngredientByNameIgnoreCase("Løg"), ingredientRepository.findIngredientByNameIgnoreCase("Paprika"), ingredientRepository.findIngredientByNameIgnoreCase("Oliven"))),
+            new Pizza(15, "Feta", 80.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Pepperoni"), ingredientRepository.findIngredientByNameIgnoreCase("Oliven"), ingredientRepository.findIngredientByNameIgnoreCase("Fetaost"))),
+            new Pizza(16, "Husets pizza", 80.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Shawarma"), ingredientRepository.findIngredientByNameIgnoreCase("Salat dressing"), ingredientRepository.findIngredientByNameIgnoreCase("Dressing"))),
+            new Pizza(17, "Spinaci", 80.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Gorgonzola"), ingredientRepository.findIngredientByNameIgnoreCase("Tomatskiver"), ingredientRepository.findIngredientByNameIgnoreCase("Spinat"))),
+            new Pizza(18, "Marmaris", 85.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Champignon"), ingredientRepository.findIngredientByNameIgnoreCase("Løg"), ingredientRepository.findIngredientByNameIgnoreCase("Kødstrimler"), ingredientRepository.findIngredientByNameIgnoreCase("Paprika"))),
+            new Pizza(19, "Lezzet", 80.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Ananas"), ingredientRepository.findIngredientByNameIgnoreCase("Pepperoni"), ingredientRepository.findIngredientByNameIgnoreCase("Oliven"))),
+            new Pizza(20, "Milano", 80.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Kylling"), ingredientRepository.findIngredientByNameIgnoreCase("Paprika"), ingredientRepository.findIngredientByNameIgnoreCase("ærter"), ingredientRepository.findIngredientByNameIgnoreCase("Majs"))),
+            new Pizza(21, "Kebab", 80.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Shawarma"), ingredientRepository.findIngredientByNameIgnoreCase("Løg"), ingredientRepository.findIngredientByNameIgnoreCase("Champginon"), ingredientRepository.findIngredientByNameIgnoreCase("Jalapenos"))),
+            new Pizza(22, "Memo speciale", 80.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Hakket Kød"), ingredientRepository.findIngredientByNameIgnoreCase("Chili"), ingredientRepository.findIngredientByNameIgnoreCase("Grøn Peber"))),
+            new Pizza(23, "Tuna", 80.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Champignon"), ingredientRepository.findIngredientByNameIgnoreCase("Løg"), ingredientRepository.findIngredientByNameIgnoreCase("Tun"))),
+            new Pizza(24, "Inca", 85.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Pepperoni"), ingredientRepository.findIngredientByNameIgnoreCase("Jalapenos"), ingredientRepository.findIngredientByNameIgnoreCase("Hvidløg"), ingredientRepository.findIngredientByNameIgnoreCase("Hakket Oksekød"), ingredientRepository.findIngredientByNameIgnoreCase("Tacosauce"))),
+            new Pizza(26, "Matador", 85.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Champignon"), ingredientRepository.findIngredientByNameIgnoreCase("Kødstrimler"), ingredientRepository.findIngredientByNameIgnoreCase("Stegt Løg"), ingredientRepository.findIngredientByNameIgnoreCase("Bearnaisesauce"))),
+            new Pizza(27, "Calzone (indbagt)", 75.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"))),
+            new Pizza(28, "Firat (indbagt)", 85.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Champignon"), ingredientRepository.findIngredientByNameIgnoreCase("Shawarma"))),
+            new Pizza(30, "Fatih", 85.0, pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("Could not find pizzaType")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce"), ingredientRepository.findIngredientByNameIgnoreCase("Ost"), ingredientRepository.findIngredientByNameIgnoreCase("Bacon"), ingredientRepository.findIngredientByNameIgnoreCase("Kylling"), ingredientRepository.findIngredientByNameIgnoreCase("Kartofler"), ingredientRepository.findIngredientByNameIgnoreCase("Rosmarin")))
+        ));
+
+        pizzaRepository.saveAll(pizzaList);
+
+    }
+
+/*
 
     public void pizzaList(){
-
         Pizza pizza1 = Pizza.builder()
             .name("Pizza1")
-            .pizzaType(pizzaTypeRepository.findById(1).orElseThrow(() -> new EntityNotFoundException("OOF")))
+            .pizzaType()
             .build();
         pizza1.setPrice(69);
         pizza1.addIngredient(ingredientRepository.findById(6).orElseThrow( () ->  new EntityNotFoundException("ingen ingrediens")));
@@ -72,6 +108,7 @@ public class DeveloperData implements ApplicationRunner {
 
 
     }
+* */
 
 
     public void drinkList() {
@@ -85,6 +122,7 @@ public class DeveloperData implements ApplicationRunner {
 
     public void pizzaTypes() {
         pizzaTypeRepository.save(PizzaType.builder().size("ALM").price(0.0).build());
+        pizzaTypeRepository.save(PizzaType.builder().size("DEEP_PAN").price(45.0).build());
         pizzaTypeRepository.save(PizzaType.builder().size("FAM").price(90.0).build());
     }
 

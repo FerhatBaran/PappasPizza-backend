@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,15 @@ public class Pizza extends Consumable{
             ingredients = new ArrayList<>();
         }
         this.ingredients.add(ingredient);
+    }
+
+
+    public Pizza(int id, String name,double price, PizzaType pizzaType, List<Ingredient> ingredients) {
+        super.setId(id);
+        super.setPrice(price);
+        this.name = name;
+        this.pizzaType = pizzaType;
+        this.ingredients = ingredients;
     }
 
 
