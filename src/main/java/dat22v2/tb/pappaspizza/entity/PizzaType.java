@@ -23,7 +23,7 @@ public class PizzaType {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pizzaType")
-    List<Pizza> pizzas;
+    List<OrderItem> orderItems;
 
 
 }

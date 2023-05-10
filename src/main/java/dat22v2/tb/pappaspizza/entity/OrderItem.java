@@ -19,7 +19,6 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-
     @JsonIgnore
     @ManyToOne
     Order order;
@@ -33,6 +32,11 @@ public class OrderItem {
     List<Ingredient> added;
     @ManyToMany
     List<Ingredient> removed;
+
+
+    @ManyToOne
+    PizzaType pizzaType;
+
 
 
 

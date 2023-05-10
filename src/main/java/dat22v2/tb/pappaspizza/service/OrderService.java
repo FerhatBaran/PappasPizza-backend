@@ -69,7 +69,6 @@ public class OrderService {
             orderItem.setRemoved(ingredientRepository.findByIdIn(orderItemRequest.getRemoved()));
 
         }
-
         return orderItem;
     }
 
