@@ -43,10 +43,7 @@ public class PizzaController {
         return drinkService.getDrinks();
     }
 
-    @GetMapping("/ingredients")
-    public List<IngredientResponse> getAllIngredients(){
-        return ingredientService.getAllIngredients();
-    }
+
 
 
 
