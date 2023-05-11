@@ -1,5 +1,6 @@
-package dat22v2.tb.pappaspizza.exception;
+package dat22v2.tb.pappaspizza.api;
 
+import dat22v2.tb.pappaspizza.exception.IlegalIngredientException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
