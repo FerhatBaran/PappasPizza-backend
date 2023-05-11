@@ -1,11 +1,18 @@
 package dat22v2.tb.pappaspizza.api;
 
-import dat22v2.tb.pappaspizza.dto.IngredientRequest;
-import dat22v2.tb.pappaspizza.dto.IngredientResponse;
+import dat22v2.tb.pappaspizza.dto.ingredient.IngredientRequest;
 import dat22v2.tb.pappaspizza.exception.IlegalIngredientException;
 import dat22v2.tb.pappaspizza.service.IngredientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import dat22v2.tb.pappaspizza.dto.ingredient.IngredientResponse;
+import dat22v2.tb.pappaspizza.service.IngredientService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+import java.util.List;
+
 
 @Repository
 public interface IngredientRepository extends JpaRepository<Ingredient,Integer>, JpaSpecificationExecutor<Ingredient> {
@@ -14,4 +16,6 @@ public interface IngredientRepository extends JpaRepository<Ingredient,Integer>,
   Ingredient findIngredientByNameIgnoreCase(String name);
 
   Optional<Ingredient> findById(Integer integer);
+
+  List<Ingredient> findByIdIn(List<Integer> ids);
 }

@@ -1,8 +1,8 @@
 package dat22v2.tb.pappaspizza.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.engine.jdbc.Size;
 
 
 @Getter
@@ -11,14 +11,24 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Drink {
+@DiscriminatorColumn(name = "consumable_type")
+public class Drink extends Consumable{
 
-    @Id
-    private int id;
 
-    String brand;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Brand brand;
 
-    String size;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private DrinkSize drinkSize;
 
-    Double price;
+
+    public Drink(Brand brand, DrinkSize size, Double price) {
+        this.setPrice(price);
+
+        brand.addDrink(this);
+        size.addDrink(this);
+
+
+    }
+
 }

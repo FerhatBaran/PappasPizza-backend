@@ -1,7 +1,7 @@
 package dat22v2.tb.pappaspizza.service;
 
-import dat22v2.tb.pappaspizza.dto.IngredientRequest;
-import dat22v2.tb.pappaspizza.dto.IngredientResponse;
+import dat22v2.tb.pappaspizza.dto.ingredient.IngredientRequest;
+import dat22v2.tb.pappaspizza.dto.ingredient.IngredientResponse;
 import dat22v2.tb.pappaspizza.entity.Ingredient;
 import dat22v2.tb.pappaspizza.exception.IlegalIngredientException;
 import dat22v2.tb.pappaspizza.repository.IngredientRepository;

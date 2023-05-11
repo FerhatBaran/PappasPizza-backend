@@ -1,10 +1,8 @@
 package dat22v2.tb.pappaspizza.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import dat22v2.tb.pappaspizza.dto.OrderRequest;
+import dat22v2.tb.pappaspizza.dto.order.OrderRequest;
 import org.hibernate.annotations.CreationTimestamp;
-import java.util.ArrayList;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,65 +21,42 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    Integer id;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @CreationTimestamp
-    private LocalDateTime creationDate;
+    LocalDateTime creationDate;
 
-    @JsonIgnore
-    @ManyToMany(cascade = CascadeType.MERGE)
-    List<Pizza> pizzas;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    List<OrderItem> orderItems;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    List<Drink> drinks;
+    String phoneNumber;
 
-    private String phoneNumber;
+    String name;
 
-    private String name;
+    String address;
 
-    private String address;
+    String postalCode;
 
-    private int postalCode;
+    LocalDateTime pickUpTime;
 
-    private LocalDateTime pickUpTime;
-
-    private boolean confirmed;
+    Boolean confirmed;
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "ENUM('FRESH','IN_PROGRESS','READY','DELIVERED')")
     private OrderStatus status;
 
-    public Order(String phoneNumber, List<Pizza> pizzas, String name, String address,
-                 int postalCode, LocalDateTime pickUpTime, boolean confirmed,
-                 OrderStatus status) {
-        this.phoneNumber = phoneNumber;
-        this.pizzas = pizzas;
-        this.name = name;
-        this.address = address;
-        this.postalCode = postalCode;
-        this.pickUpTime = pickUpTime;
-        this.confirmed = confirmed;
-        this.status = status;
+
+
+    public static Order getOrderEntity(OrderRequest orderRequest) {
+        return Order.builder()
+            .phoneNumber(orderRequest.getPhoneNumber())
+            .name(orderRequest.getName())
+            .address(orderRequest.getAddress())
+            .postalCode(orderRequest.getPostalCode())
+            .pickUpTime(orderRequest.getPickUpTime())
+            .confirmed(false)
+            .build();
+
     }
-
-
-    public void addPizza(Pizza pizza) {
-        if (pizzas == null) {
-            pizzas = new ArrayList<>();
-        }
-        pizzas.add(pizza);
-    }
-
-
-    public void addDrink(Drink drink) {
-        if (drinks == null) {
-            drinks = new ArrayList<>();
-        }
-        drinks.add(drink);
-    }
-
-
-
-
 }

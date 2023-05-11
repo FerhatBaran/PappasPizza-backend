@@ -1,4 +1,4 @@
-package dat22v2.tb.pappaspizza.dto;
+package dat22v2.tb.pappaspizza.dto.drink;
 
 import dat22v2.tb.pappaspizza.entity.Drink;
 import lombok.*;
@@ -18,12 +18,10 @@ public class DrinkResponse {
 
     Double price;
 
-
     public DrinkResponse(Drink drink) {
-        this.brand = drink.getBrand();
-        this.size = drink.getSize();
-        this.price = drink.getPrice();
         this.id = drink.getId();
-
+        this.brand = drink.getBrand().getBrand();
+        this.size = drink.getDrinkSize().getSize();
+        this.price = drink.getPrice();
     }
 }

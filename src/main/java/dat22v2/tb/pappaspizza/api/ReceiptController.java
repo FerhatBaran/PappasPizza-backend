@@ -1,16 +1,14 @@
 package dat22v2.tb.pappaspizza.api;
 
 
-import dat22v2.tb.pappaspizza.dto.ReceiptRequest;
-import dat22v2.tb.pappaspizza.dto.ReceiptResponse;
-import dat22v2.tb.pappaspizza.entity.Order;
+import dat22v2.tb.pappaspizza.dto.receipt.ReceiptRequest;
+import dat22v2.tb.pappaspizza.dto.receipt.ReceiptResponse;
 import dat22v2.tb.pappaspizza.service.ReceiptService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin

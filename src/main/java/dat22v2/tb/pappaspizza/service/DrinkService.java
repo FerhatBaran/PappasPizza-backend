@@ -1,7 +1,6 @@
 package dat22v2.tb.pappaspizza.service;
 
-import dat22v2.tb.pappaspizza.dto.DrinkResponse;
-import dat22v2.tb.pappaspizza.dto.PizzaResponse;
+import dat22v2.tb.pappaspizza.dto.drink.DrinkResponse;
 import dat22v2.tb.pappaspizza.repository.DrinkRepository;
 import org.springframework.stereotype.Service;
 
