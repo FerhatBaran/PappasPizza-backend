@@ -46,7 +46,7 @@ public class IngredientService {
                 check1 = false;
             }
         }
-        if (check1 && 2 < body.getName().length() ){
+        if (check1 && 2 <= body.getName().length() ){
 
             ingredientRepository.save(ingredient);
         } else {
