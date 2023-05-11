@@ -25,10 +25,6 @@ public class Pizza extends Consumable{
 
     private String name;
 
-    @ManyToOne
-    private PizzaType pizzaType;
-
-
     @ManyToMany(cascade = CascadeType.MERGE)
     private List<Ingredient> ingredients;
 
@@ -40,11 +36,10 @@ public class Pizza extends Consumable{
     }
 
 
-    public Pizza(int id, String name,double price, PizzaType pizzaType, List<Ingredient> ingredients) {
+    public Pizza(int id, String name,double price, List<Ingredient> ingredients) {
         super.setId(id);
         super.setPrice(price);
         this.name = name;
-        this.pizzaType = pizzaType;
         this.ingredients = ingredients;
     }
 

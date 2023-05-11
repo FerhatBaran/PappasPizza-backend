@@ -1,7 +1,6 @@
 package dat22v2.tb.pappaspizza.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dat22v2.tb.pappaspizza.dto.OrderItemRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,7 +18,6 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-
     @JsonIgnore
     @ManyToOne
     Order order;
@@ -33,6 +31,9 @@ public class OrderItem {
     List<Ingredient> added;
     @ManyToMany
     List<Ingredient> removed;
+    @ManyToOne
+    PizzaType pizzaType;
+
 
 
 

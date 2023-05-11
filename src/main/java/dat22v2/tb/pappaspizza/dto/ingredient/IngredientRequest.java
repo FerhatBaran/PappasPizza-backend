@@ -1,5 +1,4 @@
-package dat22v2.tb.pappaspizza.dto;
-
+package dat22v2.tb.pappaspizza.dto.ingredient;
 
 import lombok.*;
 
@@ -8,11 +7,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
-public class PizzaRequest {
-
+public class IngredientRequest {
     private String name;
 
-
+    private int price;
 
 }

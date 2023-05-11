@@ -1,5 +1,6 @@
-package dat22v2.tb.pappaspizza.dto;
+package dat22v2.tb.pappaspizza.dto.receipt;
 
+import dat22v2.tb.pappaspizza.dto.order.OrderResponse;
 import dat22v2.tb.pappaspizza.entity.Receipt;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
