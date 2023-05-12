@@ -30,7 +30,12 @@ public class OrderController {
         return orderService.getConfirmedOrders();
     }
 
-    @PatchMapping("confirm/{id}")
+    @GetMapping("/viewNonConfirmed")
+    public List<OrderResponse> getNonConfirmedOrders(){
+        return orderService.getNonConfirmedOrders();
+    }
+
+    @PatchMapping("/confirm/{id}")
     public void confirmOrder(@PathVariable Integer id){
         orderService.confirmOrder(id);
 

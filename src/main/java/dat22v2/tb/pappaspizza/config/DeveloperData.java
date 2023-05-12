@@ -45,6 +45,7 @@ public class DeveloperData implements ApplicationRunner {
         pizzaTypes();
         ferhatsPizzaList();
         drinkList();
+        orderList();
     }
 
 
@@ -201,4 +202,45 @@ public class DeveloperData implements ApplicationRunner {
 
 
     }
+
+    public void orderList(){
+
+        List<Order> orders = new ArrayList<>();
+        List<OrderItem> orderItems = new ArrayList<>();
+
+        Consumable pizza = pizzaRepository.findById(1);
+        Consumable pizza2 = pizzaRepository.findById(2);
+        Consumable drink = drinkRepository.findAll().get(1);
+        System.out.println(drinkRepository.findAll().get(1));
+
+        Order order = new Order();
+        order.setCreationDate(LocalDateTime.now());
+        order.setPhoneNumber("12 34 23 23");
+        order.setName("Ferhat Baran");
+        order.setAddress("Folehaven");
+        order.setPostalCode("2500");
+        order.setPickUpTime(LocalDateTime.now());
+        order.setConfirmed(false);
+        order.setStatus(OrderStatus.FRESH);
+        order.setOrderItems(orderItems);
+
+        //Set orderitem
+        OrderItem pizzaItem = new OrderItem(order, pizza, 1, List.of(ingredientRepository.findIngredientByNameIgnoreCase("Pepperoni")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce")));
+        OrderItem pizzaItem2 = new OrderItem(order, pizza2, 2, List.of(ingredientRepository.findIngredientByNameIgnoreCase("Pepperoni")), List.of(ingredientRepository.findIngredientByNameIgnoreCase("Tomatsauce")));
+        pizzaItem.setPizzaType(pizzaTypeRepository.findPizzaTypeBySize("ALM"));
+        pizzaItem2.setPizzaType(pizzaTypeRepository.findPizzaTypeBySize("ALM"));
+
+        OrderItem drinkItem = new OrderItem();
+        drinkItem.setOrder(order);
+        drinkItem.setConsumable(drink);
+        drinkItem.setQuantity(2);
+
+        orderItems.add(pizzaItem);
+        orderItems.add(pizzaItem2);
+        orderItems.add(drinkItem);
+
+        orders.add(order);
+        orderRepository.saveAll(orders);
+    }
+
 }
