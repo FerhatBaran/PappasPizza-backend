@@ -1,5 +1,6 @@
 package dat22v2.tb.pappaspizza.entity;
 
+import dat22v2.tb.pappaspizza.dto.ingredient.IngredientRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,5 +20,8 @@ public class Ingredient {
     private String name;
 
     private Double price;
+
+
+
 
 }

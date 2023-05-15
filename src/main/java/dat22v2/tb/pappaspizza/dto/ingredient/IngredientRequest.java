@@ -1,5 +1,6 @@
 package dat22v2.tb.pappaspizza.dto.ingredient;
 
+import dat22v2.tb.pappaspizza.entity.Ingredient;
 import lombok.*;
 
 @Getter
@@ -10,6 +11,11 @@ import lombok.*;
 public class IngredientRequest {
     private String name;
 
-    private int price;
+
+    public static Ingredient getIngredientEntity(IngredientRequest ingredientRequest) {
+        return Ingredient.builder()
+            .name(ingredientRequest.getName())
+            .build();
+    }
 
 }
