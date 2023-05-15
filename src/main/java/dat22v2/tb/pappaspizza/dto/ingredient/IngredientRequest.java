@@ -9,7 +9,24 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class IngredientRequest {
+
+    private Integer id;
     private String name;
+
+    private double price;
+
+    public IngredientRequest(String name, double price){
+        this.name = name;
+        this.price = price;
+
+    }
+
+    public Ingredient getIngredientEntity(){
+        return new Ingredient(
+                this.getName(),
+                this.getPrice()
+        );
+    }
 
 
     public static Ingredient getIngredientEntity(IngredientRequest ingredientRequest) {
@@ -17,5 +34,6 @@ public class IngredientRequest {
             .name(ingredientRequest.getName())
             .build();
     }
+
 
 }

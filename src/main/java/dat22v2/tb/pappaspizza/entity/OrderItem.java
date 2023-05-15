@@ -34,7 +34,16 @@ public class OrderItem {
     @ManyToOne
     PizzaType pizzaType;
 
+    public void setPizzaType(PizzaType pizzaType) {
+        this.pizzaType = pizzaType;
+        pizzaType.addOrderItem(this);
+    }
 
-
-
+    public OrderItem(Order order, Consumable consumable, Integer quantity, List<Ingredient> added, List<Ingredient> removed) {
+        this.order = order;
+        this.consumable = consumable;
+        this.quantity = quantity;
+        this.added = added;
+        this.removed = removed;
+    }
 }
