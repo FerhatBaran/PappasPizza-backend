@@ -1,6 +1,7 @@
 package dat22v2.tb.pappaspizza.api;
 
 
+import dat22v2.tb.pappaspizza.dto.pizza.MakePizzaRequest;
 import dat22v2.tb.pappaspizza.dto.pizza.PizzaRequest;
 import dat22v2.tb.pappaspizza.dto.pizza.PizzaResponse;
 import dat22v2.tb.pappaspizza.service.PizzaService;
@@ -29,7 +30,7 @@ public class PizzaController {
     }
 
     @PostMapping
-    public ResponseEntity<PizzaResponse> addPizza(@RequestBody PizzaRequest pizzaRequest) {
+    public ResponseEntity<PizzaResponse> addPizza(@RequestBody MakePizzaRequest pizzaRequest) {
         return ResponseEntity.ok(pizzaService.addPizza(pizzaRequest));
     }
 

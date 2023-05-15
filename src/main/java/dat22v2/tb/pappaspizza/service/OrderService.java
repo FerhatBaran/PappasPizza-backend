@@ -150,6 +150,20 @@ public class OrderService {
         return orderResponses;
     }
 
+    public List<OrderResponse> getNonConfirmedOrders() {
+        List<Order> orders = orderRepository.findAll();
+        List<Order> nonConfirmedOrders = new ArrayList<>();
+        List<OrderResponse> orderResponses = new ArrayList<>();
+        for (Order order : orders) {
+            if (!order.getConfirmed()){
+                nonConfirmedOrders.add(order);
+            }
+
+        }
+        orderResponses = nonConfirmedOrders.stream().map(order -> new OrderResponse(order)).toList();
+        return orderResponses;
+    }
+
     public void confirmOrder(Integer id) {
        Order order = orderRepository.findById(id).orElseThrow(()
                -> new EntityNotFoundException("Kunne ikke finde Order"));

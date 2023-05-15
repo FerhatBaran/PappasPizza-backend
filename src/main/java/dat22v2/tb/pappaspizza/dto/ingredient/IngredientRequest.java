@@ -9,13 +9,26 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class IngredientRequest {
+
+    private Integer id;
     private String name;
 
+    private double price;
 
-    public static Ingredient getIngredientEntity(IngredientRequest ingredientRequest) {
-        return Ingredient.builder()
-            .name(ingredientRequest.getName())
-            .build();
+    public IngredientRequest(String name, double price){
+        this.name = name;
+        this.price = price;
+
     }
+
+    public Ingredient getIngredientEntity(){
+        return new Ingredient(
+                this.getName(),
+                this.getPrice()
+        );
+    }
+
+
+
 
 }

@@ -1,5 +1,6 @@
 package dat22v2.tb.pappaspizza.service;
 
+import dat22v2.tb.pappaspizza.dto.pizza.MakePizzaRequest;
 import dat22v2.tb.pappaspizza.dto.pizza.PizzaRequest;
 import dat22v2.tb.pappaspizza.dto.pizza.PizzaResponse;
 import dat22v2.tb.pappaspizza.entity.Ingredient;
@@ -36,12 +37,12 @@ public class PizzaService {
         return pizzaRepository.findAll().stream().map(PizzaResponse::new).toList();
     }
 
-    public PizzaResponse addPizza(PizzaRequest pizzaRequest) {
-        Pizza pizza = PizzaRequest.getPizzaEntity(pizzaRequest);
+    public PizzaResponse addPizza(MakePizzaRequest pizzaRequest) {
+        Pizza pizza = new Pizza();
+        pizza.setName(pizzaRequest.getName());
+        pizza.setPrice(pizzaRequest.getPrice());
 
-        List<String> namesOfIngredients = pizza.getIngredients().stream().map(Ingredient::getName).toList();
-
-        pizza.setIngredients(ingredientRepository.findByNameIn(namesOfIngredients));
+        pizza.setIngredients(ingredientRepository.findByNameIn(pizzaRequest.getIngredients()));
 
         return new PizzaResponse(pizzaRepository.save(pizza));
     }

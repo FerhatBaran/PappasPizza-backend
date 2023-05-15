@@ -28,7 +28,7 @@ public class Order {
     @CreationTimestamp
     LocalDateTime creationDate;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order", fetch = FetchType.LAZY)
     List<OrderItem> orderItems;
 
     String phoneNumber;
@@ -48,15 +48,14 @@ public class Order {
     private OrderStatus status;
 
 
-    public void addOrderItem(OrderItem orderItem) {
-        if (orderItems == null) {
+    public void addOrderItem(OrderItem orderItem){
+        if (orderItems == null){
             orderItems = new ArrayList<>();
         }
         orderItems.add(orderItem);
         orderItem.setOrder(this);
+
     }
-
-
     public static Order getOrderEntity(OrderRequest orderRequest) {
         return Order.builder()
             .phoneNumber(orderRequest.getPhoneNumber())
