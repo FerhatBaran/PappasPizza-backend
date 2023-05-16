@@ -1,8 +1,11 @@
 package dat22v2.tb.pappaspizza.config;
 
 import dat22v2.tb.pappaspizza.entity.*;
+import dat22v2.tb.pappaspizza.entity.user.Address;
+import dat22v2.tb.pappaspizza.entity.user.User;
 import dat22v2.tb.pappaspizza.repository.*;
 
+import dat22v2.tb.security.entity.Role;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -28,7 +31,11 @@ public class DeveloperData implements ApplicationRunner {
 
     DrinkSizeRepository drinkSizeRepository;
 
-    public DeveloperData(IngredientRepository ingredientRepository, OrderRepository orderRepository, PizzaRepository pizzaRepository, DrinkRepository drinkRepository, ReceiptRepository receiptRepository, PizzaTypeRepository pizzaTypeRepository, BrandRepository brandRepository, DrinkSizeRepository drinkSizeRepository) {
+    AddressRepository addressRepository;
+
+    UserRepository userRepository;
+
+    public DeveloperData(IngredientRepository ingredientRepository, OrderRepository orderRepository, PizzaRepository pizzaRepository, DrinkRepository drinkRepository, ReceiptRepository receiptRepository, PizzaTypeRepository pizzaTypeRepository, BrandRepository brandRepository, DrinkSizeRepository drinkSizeRepository, AddressRepository addressRepository,UserRepository userRepository) {
         this.ingredientRepository = ingredientRepository;
         this.orderRepository = orderRepository;
         this.pizzaRepository = pizzaRepository;
@@ -37,6 +44,8 @@ public class DeveloperData implements ApplicationRunner {
         this.pizzaTypeRepository = pizzaTypeRepository;
         this.brandRepository = brandRepository;
         this.drinkSizeRepository = drinkSizeRepository;
+        this.addressRepository = addressRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -45,6 +54,46 @@ public class DeveloperData implements ApplicationRunner {
         pizzaTypes();
         ferhatsPizzaList();
         drinkList();
+        accountsAndAddresses();
+    }
+
+    public void accountsAndAddresses() {
+        Address address = new Address();
+        address.setId(1);
+        address.setCity("Græsted");
+        address.setZip("3230");
+        address.setStreet("Wherever");
+        addressRepository.save(address);
+
+        User user = new User();
+        user.setFirstName("Kristian");
+        user.setLastName("Wede");
+        user.setAddress(addressRepository.findById(1));
+        user.setPhone("91826545");
+        user.setEmail("kristianwede90@gmail.com");
+        user.setUsername("krille");
+        user.setPassword("beaver");
+        user.addRole(Role.ADMIN);
+
+        userRepository.save(user);
+
+        Address address2 = new Address();
+        address2.setId(2);
+        address2.setCity("Basicville");
+        address2.setZip("6969");
+        address2.setStreet("Wherever idk");
+        addressRepository.save(address2);
+
+        User user2 = new User();
+        user2.setFirstName("Mark");
+        user2.setLastName("Den store");
+        user2.setAddress(addressRepository.findById(2));
+        user2.setPhone("0850175");
+        user2.setEmail("markKanGodt@gmail.com");
+        user2.setUsername("mark");
+        user2.setPassword("kangodt");
+        user2.addRole(Role.USER);
+        userRepository.save(user2);
     }
 
 
