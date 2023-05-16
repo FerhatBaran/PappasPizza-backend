@@ -1,4 +1,5 @@
 package dat22v2.tb.pappaspizza.entity;
+import dat22v2.tb.pappaspizza.dto.pizza.PizzaRequest;
 import jakarta.persistence.*;
 
 import jakarta.persistence.CascadeType;
