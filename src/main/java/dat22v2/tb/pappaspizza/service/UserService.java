@@ -3,6 +3,7 @@ package dat22v2.tb.pappaspizza.service;
 import dat22v2.tb.pappaspizza.dto.user.UserRequest;
 import dat22v2.tb.pappaspizza.dto.user.UserResponse;
 import dat22v2.tb.pappaspizza.entity.user.User;
+import dat22v2.tb.pappaspizza.exception.EmailAlreadyExistsException;
 import dat22v2.tb.pappaspizza.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -26,7 +27,12 @@ public class UserService {
     }
 
 
-    public UserResponse addUser(UserRequest body) {
+    public UserResponse addUser(UserRequest body) throws EmailAlreadyExistsException {
+
+        if(userRepository.existsByEmail(body.getEmail())) {
+            throw new EmailAlreadyExistsException("Email already taken by different entry.");
+        }
+
         User user = userRepository.save(UserRequest.getUserEntity(body));
         return new UserResponse(user);
     }

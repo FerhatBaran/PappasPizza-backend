@@ -2,6 +2,7 @@ package dat22v2.tb.pappaspizza.api;
 
 import dat22v2.tb.pappaspizza.dto.user.UserRequest;
 import dat22v2.tb.pappaspizza.dto.user.UserResponse;
+import dat22v2.tb.pappaspizza.exception.EmailAlreadyExistsException;
 import dat22v2.tb.pappaspizza.service.UserService;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,7 +31,7 @@ public class UserController {
         }
 
         @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-        UserResponse addUser(@RequestBody UserRequest userRequest) {
+        UserResponse addUser(@RequestBody UserRequest userRequest) throws EmailAlreadyExistsException {
             return userService.addUser(userRequest);
         }
 
