@@ -35,4 +35,4 @@ If a group member has been unattentive and silent for 24 hours, contact with a t
 
 
 ### Azure
-We have decided for this project to use Mark Dyrby Denners's Azure subscription to setup resources.
+We have decided for this project to use Mark Dyrby Denners's Azure subscription to setup resources
