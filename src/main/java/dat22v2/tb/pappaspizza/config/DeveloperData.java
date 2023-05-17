@@ -261,6 +261,7 @@ public class DeveloperData implements ApplicationRunner {
         Consumable pizza = pizzaRepository.findById(1);
         Consumable pizza2 = pizzaRepository.findById(2);
         Consumable drink = drinkRepository.findAll().get(1);
+        Consumable cocacoladase = drinkRepository.findDrinkByBrand_BrandAndDrinkSize_Size("Coca Cola", "1,50L");
         System.out.println(drinkRepository.findAll().get(1));
 
         Order order = new Order();
@@ -282,7 +283,7 @@ public class DeveloperData implements ApplicationRunner {
 
         OrderItem drinkItem = new OrderItem();
         drinkItem.setOrder(order);
-        drinkItem.setConsumable(drink);
+        drinkItem.setConsumable(cocacoladase);
         drinkItem.setQuantity(2);
 
         orderItems.add(pizzaItem);
