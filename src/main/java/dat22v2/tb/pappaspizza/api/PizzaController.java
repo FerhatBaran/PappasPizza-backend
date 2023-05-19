@@ -35,5 +35,11 @@ public class PizzaController {
     }
 
 
+   @PatchMapping("/{id}/price/{price}")
+    public ResponseEntity<PizzaResponse> changePizzaPrice(@PathVariable("price") Double price, @PathVariable("id") int id) {
+        return ResponseEntity.ok(pizzaService.changePizzaPrice(id,price));
+    }
+
+
 
 }
