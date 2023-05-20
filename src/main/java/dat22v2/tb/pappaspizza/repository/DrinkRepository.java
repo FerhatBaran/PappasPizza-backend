@@ -10,5 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface DrinkRepository extends JpaRepository<Drink,Integer>, JpaSpecificationExecutor<Drink>{
 
   Drink findDrinkById(int id);
+  Drink findDrinkByBrandAndDrinkSize(String brand, String drinkSize);
 
+  Drink findDrinkByBrand_BrandAndDrinkSize_Size(String brand, String drinkSize);
 }

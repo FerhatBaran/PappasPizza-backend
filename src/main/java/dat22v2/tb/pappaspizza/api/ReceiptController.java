@@ -6,6 +6,7 @@ import dat22v2.tb.pappaspizza.dto.receipt.ReceiptResponse;
 import dat22v2.tb.pappaspizza.service.ReceiptService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public class ReceiptController {
     }
 
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ReceiptResponse> addReceiptToOrder(@RequestBody ReceiptRequest body) {
         System.out.println(body.getOrderId());
