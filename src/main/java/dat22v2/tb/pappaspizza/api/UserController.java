@@ -21,8 +21,6 @@ public class UserController {
             this.userService = userService;
         }
 
-
-
         //Kind of useless
         @PreAuthorize("hasAuthority('ADMIN')")
         @GetMapping

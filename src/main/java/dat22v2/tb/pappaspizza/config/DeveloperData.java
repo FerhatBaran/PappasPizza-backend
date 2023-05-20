@@ -6,7 +6,6 @@ import dat22v2.tb.pappaspizza.entity.user.User;
 import dat22v2.tb.pappaspizza.repository.*;
 
 import dat22v2.tb.security.entity.Role;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
@@ -73,8 +72,8 @@ public class DeveloperData implements ApplicationRunner {
         user.setAddress(addressRepository.findById(1));
         user.setPhone("91826545");
         user.setEmail("kristianwede90@gmail.com");
-        user.setUsername("krille");
-        user.setPassword("beaver");
+        user.setUsername("Kristian");
+        user.setPassword("Beaver");
         user.addRole(Role.ADMIN);
 
         userRepository.save(user);
@@ -92,8 +91,8 @@ public class DeveloperData implements ApplicationRunner {
         user2.setAddress(addressRepository.findById(2));
         user2.setPhone("0850175");
         user2.setEmail("markKanGodt@gmail.com");
-        user2.setUsername("mark");
-        user2.setPassword("kangodt");
+        user2.setUsername("Mark");
+        user2.setPassword("Beaver");
         user2.addRole(Role.USER);
         userRepository.save(user2);
     }
@@ -134,34 +133,6 @@ public class DeveloperData implements ApplicationRunner {
         pizzaRepository.saveAll(pizzaList);
 
     }
-
-/*
-
-    public void pizzaList(){
-        Pizza pizza1 = Pizza.builder()
-            .name("Pizza1")
-            .pizzaType()
-            .build();
-        pizza1.setPrice(69);
-        pizza1.addIngredient(ingredientRepository.findById(6).orElseThrow( () ->  new EntityNotFoundException("ingen ingrediens")));
-        pizza1.addIngredient(ingredientRepository.findById(12).orElseThrow( () ->  new EntityNotFoundException("ingen ingrediens")));
-        pizza1.addIngredient(ingredientRepository.findById(13).orElseThrow( () ->  new EntityNotFoundException("ingen ingrediens")));
-        pizzaRepository.save(pizza1);
-
-        Pizza pizza2 = Pizza.builder()
-            .name("Pizza2")
-            .pizzaType(pizzaTypeRepository.findById(2).orElseThrow(() -> new EntityNotFoundException("OOF")))
-            .build();
-        pizza2.setPrice(79);
-        pizza2.addIngredient(ingredientRepository.findById(4).orElseThrow( () ->  new EntityNotFoundException("ingen ingrediens")));
-        pizza2.addIngredient(ingredientRepository.findById(5).orElseThrow( () ->  new EntityNotFoundException("ingen ingrediens")));
-        pizza2.addIngredient(ingredientRepository.findById(19).orElseThrow( () ->  new EntityNotFoundException("ingen ingrediens")));
-        pizzaRepository.save(pizza2);
-
-
-
-    }
-* */
 
 
     public void drinkList() {

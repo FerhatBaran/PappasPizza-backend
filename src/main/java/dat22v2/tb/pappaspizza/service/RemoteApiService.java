@@ -5,11 +5,9 @@ import dat22v2.tb.pappaspizza.dto.APIWeatherResponse;
 import dat22v2.tb.pappaspizza.dto.WeatherResponse;
 import dat22v2.tb.pappaspizza.entity.Weather;
 import dat22v2.tb.pappaspizza.repository.WeatherRepository;
-import dat22v2.tb.pappaspizza.utility.MonoApiCaller;
 import dat22v2.tb.pappaspizza.utility.APIkeyHolder;
-import org.springframework.beans.factory.annotation.Autowired;
+import dat22v2.tb.pappaspizza.utility.MonoApiCaller;
 import org.springframework.stereotype.Service;
-
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
