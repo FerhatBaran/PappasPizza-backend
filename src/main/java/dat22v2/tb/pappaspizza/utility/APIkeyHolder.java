@@ -18,8 +18,6 @@ public class APIkeyHolder {
     private String chatGPTAPIKey;
 
     */
-    @Value("${WEATHER_API_KEY}")
-    @Getter
-    private String weatherAPIKey;
+
 
 }
